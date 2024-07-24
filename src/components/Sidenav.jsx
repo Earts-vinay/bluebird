@@ -10,7 +10,6 @@ const Sidebar = () => {
     const open = Boolean(anchorEl);
     const now = moment();
     const formattedDate = now.format('ddd-DD/MM/YY');
-    const time = now.format('HH:mm:ss');
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -26,7 +25,7 @@ const Sidebar = () => {
 
     const getItemStyle = (path) => ({
         backgroundColor: activeItem === path ? 'rgba(24, 123, 205, 0.6)' : 'transparent',
-        color: activeItem === path ? '#187BCD' : '#fff',
+        color: activeItem === path ? '#fff' : '#fff',
         borderRadius: "10px"
     });
 
@@ -49,7 +48,8 @@ const Sidebar = () => {
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <Box sx={{ position: 'sticky', top: 0, zIndex: 1, py: 1 }}>
-                    <ListItem sx={{ display: "flex", justifyContent: "center", alignItems: "center", color: "#5BB5FF" }}>
+                    <ListItem sx={{ display: "flex", justifyContent: "center", alignItems: "center", color: "#5BB5FF",gap:2 }}>
+                        <img src="/assets/icons/companylogo.svg" alt="" />
                         <Typography variant="h6">COMPANY NAME</Typography>
                     </ListItem>
                     <ListItem sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
