@@ -1,8 +1,19 @@
 import React from 'react'
+import CustomSearch from '../utils/CustomSearch'
+import CustomButton from '../utils/CustomButton'
+import CustomTextField from '../utils/CustomTextfield'
+import CustomDropdown from '../utils/CustomDropdown'
+
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>Dashboard
+
+<CustomSearch/>
+<CustomButton >Add Now</CustomButton>
+<CustomTextField/>
+<CustomDropdown></CustomDropdown>
+    </div>
   )
 }
 
