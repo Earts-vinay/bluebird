@@ -6,16 +6,20 @@ import {
   Button,
   Grid
 } from '@mui/material';
-import CustomButton from "../utils/CustomButton";
+import CustomButton from "../../utils/CustomButton";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
-import CustomTextField from "../utils/CustomTextfield";
-import DropdownTextField from "../utils/CustomDropdown";
+import CustomTextField from "../../utils/CustomTextfield";
+import CustomMapContainer from "../../utils/CustomMapContainer";
 
 const EditDevices = () => {
   const navigate = useNavigate();
   const [deviceName, setDeviceName] = useState('');
   const [dropdownValue, setDropdownValue] = useState('');
+  const [latitude, setLatitude] = useState(17.3850); 
+  const [longitude, setLongitude] = useState(78.4867); 
+  const [defaultCenter, setDefaultCenter] = useState({ lat: 17.3850, lng: 78.4867 });
+  const [zoom, setZoom] = useState(10);
 
   const handleGoBack = () => {
     navigate(-1); 
@@ -37,12 +41,11 @@ const EditDevices = () => {
     setDropdownValue(event.target.value);
   };
 
-;
-
   return (
-    <Container disableGutters sx={{ maxWidth: '100%' }}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2} sx={{ pl: "0px" }}>
-        <Box display="flex" alignItems="center" sx={{ pl: "0px" }}>
+    <>
+      <Grid container spacing={2}>
+      <Grid item xs={12} md={6}>
+      <Box display="flex" alignItems="center" sx={{ pl: "0px" }}>
           <Button
             onClick={handleGoBack}
             sx={{
@@ -63,7 +66,9 @@ const EditDevices = () => {
             Devices
           </Typography>
         </Box>
-        <Box display="flex">
+      </Grid>
+      <Grid item xs={12} md={6}>
+      <Box display="flex"justifyContent='flex-end'>
           <CustomButton 
             label="Cancel" 
             onClick={handleCancel} 
@@ -75,8 +80,8 @@ const EditDevices = () => {
             sx={{ color:"white", backgroundColor:"#187BCD", textTransform: 'none', borderRadius:"10px"}}
           >Save & Continue</CustomButton>
         </Box>
-      </Box>
-      
+      </Grid>
+      </Grid>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <Box sx={{ padding: '16px' }}>
@@ -86,41 +91,42 @@ const EditDevices = () => {
               placeholder="device name"
               sx={{ width: "100%", fontSize:"8px" }}
             />
-           <CustomTextField
-              value={deviceName}
-              onChange={handleDeviceNameChange}
+            <CustomTextField
+              value={deviceName}   
               placeholder="pole name"
               sx={{ width: "100%"}}
             />
             <CustomTextField
-              value={deviceName}
-              onChange={handleDeviceNameChange}
+              value={deviceName}      
               placeholder="camera ID"
               sx={{ width: "100%" }}
             />
             <CustomTextField
-              value={deviceName}
-              onChange={handleDeviceNameChange}
+              value={deviceName}            
               placeholder="latitude"
               sx={{ width: "100%"}}
             />
-             <CustomTextField
+            <CustomTextField
               value={deviceName}
-              onChange={handleDeviceNameChange}
               placeholder="longitude"
               sx={{ width: "100%" }}
             />
           </Box>
         </Grid>
-        <Grid item xs={12} md={6} height="90vh">
-          <Box sx={{ padding: '16px' }}>
-            <Typography variant="h6" sx={{ marginBottom: '16px' }}>
-              
-            </Typography>
+        <Grid item xs={12} md={6} justifyContent='flex-end'>
+          <Box
+            sx={{ 
+              paddingTop: '16px',
+              display: 'flex',
+              flexDirection: 'column',
+              height: '90vh' 
+            }}
+          >
+            <CustomMapContainer latitude={latitude} longitude={longitude} defaultCenter={defaultCenter} zoom={zoom} />
           </Box>
         </Grid>
       </Grid>
-    </Container>
+      </>
   );
 };
 

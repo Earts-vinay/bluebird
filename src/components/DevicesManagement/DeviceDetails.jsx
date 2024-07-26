@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import CustomSearch from '../utils/CustomSearch'; 
+import CustomSearch from '../../utils/CustomSearch'; 
 import { useNavigate } from 'react-router-dom';
 
 const sampleData = [
@@ -33,6 +33,10 @@ const DeviceDetails = () => {
   const navigate = useNavigate();
   const EditIconUrl = process.env.PUBLIC_URL + '/assets/icons/edit.svg';
   const DeleteIconUrl= process.env.PUBLIC_URL + '/assets/icons/delete.svg';
+  const PersonIconUrl =process.env.PUBLIC_URL + '/assets/icons/person.svg';
+  const VehicleIconUrl =process.env.PUBLIC_URL + '/assets/icons/car.svg';
+  const PlateIconUrl = process.env.PUBLIC_URL + '/assets/icons/plate.svg';
+  const ForwardIconUrl =  process.env.PUBLIC_URL + '/assets/icons/forward.svg';
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -49,7 +53,7 @@ const DeviceDetails = () => {
 
   const handleRowClick = (index) => {
     setSelectedRowIndex(index);    
-    navigate("/devicedetails")
+    navigate("/devices/devicedetails")
   };
 
   const callDevices = () =>{
@@ -57,7 +61,7 @@ const DeviceDetails = () => {
   }
 
   const editDevices = () =>{
-    navigate("/editdevice")
+    navigate("/devices/editdevice")
   }
 
   return (
@@ -95,7 +99,7 @@ const DeviceDetails = () => {
       <Box sx={{ display: "flex", flexDirection: 'row' }}> 
         <Typography sx={{ color: "#7A9AAE", fontSize: 14 }}  onClick={callDevices}>Devices</Typography>
         <img
-                      src="assets/icons/forward.svg"
+                      src={ForwardIconUrl}
                       alt="forward Icon"
                       style={{ width: '8px', height: '8px', marginRight: '4px', paddingLeft: "5px", paddingTop: "6px" }}
                     /> 
@@ -168,17 +172,17 @@ const DeviceDetails = () => {
                   <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>{row.polygons}</TableCell>
                   <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>
                     <img
-                      src="assets/icons/person.svg"
+                      src={PersonIconUrl}
                       alt="person Icon"
                       style={{ width: '16px', height: '16px', marginRight: '4px' }}
                     /> 
                     <img
-                      src="assets/icons/car.svg"
+                      src={VehicleIconUrl}
                       alt="car Icon"
                       style={{ width: '16px', height: '16px', marginRight: '4px' }}
                     />
                     <img
-                      src="assets/icons/plate.svg"
+                      src={PlateIconUrl}
                       alt="plate Icon"
                       style={{ width: '20px', height: '20px', marginRight: '4px' }}
                     />
