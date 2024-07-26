@@ -177,12 +177,12 @@ const DeviceDetails = () => {
                       style={{ width: '16px', height: '16px', marginRight: '4px' }}
                     /> 
                     <img
-                      src="assets/icons/car.svg"
+                      src={VehicleIconUrl}
                       alt="car Icon"
                       style={{ width: '16px', height: '16px', marginRight: '4px' }}
                     />
                     <img
-                      src="/assets/icons/plate.svg"
+                      src={PlateIconUrl}
                       alt="plate Icon"
                       style={{ width: '20px', height: '20px', marginRight: '4px' }}
                     />
@@ -205,13 +205,13 @@ const DeviceDetails = () => {
                       }}
                     >
                       <img  
-                        src="/assets/icons/edit.svg"
+                        src={EditIconUrl}
                         alt="Edit Icon"
                         style={{ width: '20px', height: '16px', marginRight: '4px' }}
                       />
                     </Box>
                     <img
-                      src="/assets/icons/delete.svg"
+                      src={DeleteIconUrl}
                       alt="Delete Icon"
                       style={{ width: '20px', height: '16px', marginRight: '4px' }}
                     />
