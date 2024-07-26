@@ -45,7 +45,7 @@ const Devices = () => {
 
   const handleRowClick = (index) => {
     setSelectedRowIndex(index);    
-    navigate("/devicedetails")
+    navigate("/devices/devicedetails")
     
   };
 

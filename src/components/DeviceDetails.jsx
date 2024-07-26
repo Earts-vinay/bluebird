@@ -47,7 +47,7 @@ const DeviceDetails = () => {
 
   const handleRowClick = (index) => {
     setSelectedRowIndex(index);    
-    navigate("/devicedetails")
+    navigate("/devices/devicedetails")
   };
 
   const callDevices = () =>{
@@ -93,7 +93,7 @@ const DeviceDetails = () => {
       <Box sx={{ display: "flex", flexDirection: 'row' }}> 
         <Typography sx={{ color: "#7A9AAE", fontSize: 14 }}  onClick={callDevices}>Devices</Typography>
         <img
-                      src="assets/icons/forward.svg"
+                      src="/assets/icons/forward.svg"
                       alt="forward Icon"
                       style={{ width: '8px', height: '8px', marginRight: '4px', paddingLeft: "5px", paddingTop: "6px" }}
                     /> 
@@ -167,17 +167,17 @@ const DeviceDetails = () => {
                   <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>{row.polygons}</TableCell>
                   <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>
                     <img
-                      src="assets/icons/person.svg"
+                      src="/assets/icons/person.svg"
                       alt="person Icon"
                       style={{ width: '16px', height: '16px', marginRight: '4px' }}
                     /> 
                     <img
-                      src="assets/icons/car.svg"
+                      src="/assets/icons/car.svg"
                       alt="car Icon"
                       style={{ width: '16px', height: '16px', marginRight: '4px' }}
                     />
                     <img
-                      src="assets/icons/plate.svg"
+                      src="/assets/icons/plate.svg"
                       alt="plate Icon"
                       style={{ width: '20px', height: '20px', marginRight: '4px' }}
                     />
@@ -200,13 +200,13 @@ const DeviceDetails = () => {
                       }}
                     >
                       <img  
-                        src="assets/icons/edit.svg"
+                        src="/assets/icons/edit.svg"
                         alt="Edit Icon"
                         style={{ width: '20px', height: '16px', marginRight: '4px' }}
                       />
                     </Box>
                     <img
-                      src="assets/icons/delete.svg"
+                      src="/assets/icons/delete.svg"
                       alt="Delete Icon"
                       style={{ width: '20px', height: '16px', marginRight: '4px' }}
                     />
