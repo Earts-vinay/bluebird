@@ -50,7 +50,7 @@ const Devices = () => {
   };
 
   return (
-    <Container disableGutters sx={{ maxWidth: '100%' }}>
+    < >
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2} sx={{ pl: "0px" }}>
         <Box display="flex" alignItems="center" sx={{ pl: "0px" }}>
           <Button
@@ -139,7 +139,7 @@ const Devices = () => {
                       <Typography sx={{ marginBottom: '4px' }}>{row.propertyName}</Typography>
                       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img
-                          src="assets/icons/location.svg"
+                          src="/assets/icons/location.svg"
                           alt="Location Icon"
                           style={{ width: '16px', height: '16px', marginRight: '4px' }}
                         />
@@ -159,7 +159,7 @@ const Devices = () => {
           </Table>
         </TableContainer>
       </Box>
-    </Container>
+    </>
   );
 };
 
