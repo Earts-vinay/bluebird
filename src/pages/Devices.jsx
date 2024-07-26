@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CustomSearch from '../utils/CustomSearch'; 
+import { useNavigate } from 'react-router-dom';
 
 const sampleData = [
   { propertyName: "Ikea Test 01", raiseAlerts: 1, camerasInstalled: 0, activeCameras: 3, inactiveCameras: 1, propertyLocation: 'Virginia, USA.' },
@@ -28,6 +29,7 @@ const sampleData = [
 const Devices = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRowIndex, setSelectedRowIndex] = useState(0); 
+  const navigate = useNavigate();
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -37,20 +39,22 @@ const Devices = () => {
     item.propertyName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleButtonClick = () => {
-    console.log('Button clicked!');
+  const handleGoBack  = () => {
+    navigate(-1); 
   };
 
   const handleRowClick = (index) => {
-    setSelectedRowIndex(index);
+    setSelectedRowIndex(index);    
+    navigate("/devicedetails")
+    
   };
 
   return (
-    <Container>
+    <Container disableGutters sx={{ maxWidth: '100%' }}>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2} sx={{ pl: "0px" }}>
         <Box display="flex" alignItems="center" sx={{ pl: "0px" }}>
           <Button
-            onClick={handleButtonClick}
+            onClick={handleGoBack }
             sx={{
               borderRadius: '50%',
               width: 35,
@@ -61,12 +65,12 @@ const Devices = () => {
               justifyContent: 'center',
               backgroundColor: '#E2E8F0',
               color: 'white',
-              '&:hover': { backgroundColor: 'darkblue' }
+              // '&:hover': { backgroundColor: 'darkblue' }
             }}
           >
             <ArrowBackIosIcon sx={{ color: '#3275AF', paddingLeft: 1, fontSize: 18 }} />
           </Button>
-          <Typography variant="h6" ml={5} sx={{ color: "#3275AF" }}>
+          <Typography variant="h6" ml={5} sx={{ color: "#3275AF", fontSize:"18px" }}>
             Devices
           </Typography>
         </Box>
@@ -89,10 +93,14 @@ const Devices = () => {
               '& th': {
                 padding: '10px 16px',
                 fontWeight: "545",
-                borderTopLeftRadius: '10px', 
-                borderTopRightRadius: '10px',
                 fontSize: '14px',
-                textAlign: 'center'
+                textAlign: 'center',
+                '&:first-of-type': {
+                  borderTopLeftRadius: '10px', 
+                },
+                '&:last-of-type': {
+                  borderTopRightRadius: '10px',
+                },
               },
             },
             '& .MuiTableCell-root': {
