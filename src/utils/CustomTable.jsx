@@ -66,7 +66,7 @@ const CustomTable = ({ columns, data, customStyles }) => {
                                 >
                                     <Box onClick={(e) => {
                                         e.stopPropagation();
-                                        editDevices();
+                                        // editDevices();
                                     }}
                                         sx={{
                                             display: 'inline-flex',
