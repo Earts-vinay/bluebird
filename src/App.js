@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Box sx={{ display: 'flex' }}>
         <Sidenav />
-        <Box component="main" sx={{ flexGrow: 1, bgcolor: '#f0f2f5', p: 3,  }}>
+        <Box component="main" sx={{ flexGrow: 1,  p: 3,  }}>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/devices" element={<Devices />} />

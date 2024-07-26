@@ -12,6 +12,7 @@ const CustomButton = ({
   disabled = false,
   startIcon,
   endIcon,
+  width = 'auto',
   ...props
 }) => {
   return (
@@ -25,7 +26,9 @@ const CustomButton = ({
       endIcon={endIcon}
       sx={{
         backgroundColor: 'rgba(24, 123, 205, 1)',
-       borderRadius:"10px"
+        borderRadius: "10px",
+        textTransform: 'capitalize',
+        width: width,
       }}
       {...props}
     >

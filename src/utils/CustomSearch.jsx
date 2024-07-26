@@ -4,7 +4,8 @@ import React from 'react';
 import { TextField, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-const CustomSearch = ({ value, onChange, placeholder = 'Search...' }) => {
+const CustomSearch = ({ value, onChange, placeholder = 'Search...', width = 'auto' }) => {
+  // console.log(value, onChange, placeholder);
   return (
     <TextField
       value={value}
@@ -22,6 +23,7 @@ const CustomSearch = ({ value, onChange, placeholder = 'Search...' }) => {
       sx={{
         borderRadius: '10px',
         border: 'none',
+        width: width,
         backgroundColor: 'white',
         '& .MuiOutlinedInput-root': {
           borderRadius: '10px',
