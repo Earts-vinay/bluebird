@@ -63,7 +63,12 @@ const Sidenav = () => {
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <Box sx={{ position: 'sticky', top: 0, zIndex: 1, py: 1 }}>
-                    <ListItem sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#5BB5FF', gap: 1, mt: 2 }}>
+                <Box sx={{ display:"flex", justifyContent:"end", }}>
+                        <button  onClick={handleToggle} style={{ justifyContent: 'end', minWidth: '10px', backgroundColor: 'rgba(255, 255, 255, 0.2)', borderRadius: '50%', mx: 1,}}>
+                            {open ? <ChevronLeftIcon style={{ color: '#fff',width:"10px",height:"10px" }} /> : <ChevronRightIcon style={{ color: '#fff' }} />}
+                        </button>
+                    </Box>
+                    <ListItem sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#5BB5FF', gap: 1,}}>
                         <img src="/assets/icons/companylogo.svg" alt="" />
                         {open && <Typography variant="h6">COMPANY NAME</Typography>}  {/* Conditional rendering */}
                     </ListItem>
@@ -108,12 +113,7 @@ const Sidenav = () => {
                         </FormControl>
                     </ListItem>
                     <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.48)', flex: 1, py: 2, mx: 2 }} />
-                    <Box sx={{ display:"flex", justifyContent:"end", position:"relative",left:"30px", }}>
-                        <Button  onClick={handleToggle} style={{ justifyContent: 'end', minWidth: 'auto', p: 1, backgroundColor: 'rgba(255, 255, 255, 0.2)', borderRadius: '50%', mx: 1,zIndex:1}}>
-                            {open ? <ChevronLeftIcon style={{ color: '#fff', }} /> : <ChevronRightIcon style={{ color: '#fff' }} />}
-                        </Button>
-                    </Box>
-
+                   
                 </Box>
                 <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
                     <List>
@@ -121,7 +121,7 @@ const Sidenav = () => {
                             <Avatar sx={{ bgcolor: 'grey', width: '65px', height: '65px' }}>JD</Avatar>
                             <div style={{ marginLeft: '16px' }}>
                                 {open && <Typography variant='p'>Welcome,<br /> James Dho</Typography>}  {/* Conditional rendering */}
-                                <Typography variant='p'>{formattedDate}</Typography>
+                               { open && <Typography variant='p'>{formattedDate}</Typography>}
                             </div>
                         </ListItem>
                         <Box sx={{ pt: 3, mx: 2, gap: 2, display: "flex", flexDirection: "column" }}>
