@@ -61,7 +61,7 @@ const DeviceDetails = () => {
   }
 
   return (
-    <Container disableGutters sx={{ maxWidth: '100%' }}>
+    <>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2} sx={{ pl: "0px" }}>
         <Box display="flex" alignItems="center" sx={{ pl: "0px" }}>
           <Button
@@ -218,7 +218,7 @@ const DeviceDetails = () => {
           </Table>
         </TableContainer>
       </Box>
-    </Container>
+    </>
   );
 };
 
