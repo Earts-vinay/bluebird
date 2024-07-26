@@ -99,7 +99,7 @@ const DeviceDetails = () => {
       <Box sx={{ display: "flex", flexDirection: 'row' }}> 
         <Typography sx={{ color: "#7A9AAE", fontSize: 14 }}  onClick={callDevices}>Devices</Typography>
         <img
-                      src={ForwardIconUrl}
+                      src="/assets/icons/forward.svg"
                       alt="forward Icon"
                       style={{ width: '8px', height: '8px', marginRight: '4px', paddingLeft: "5px", paddingTop: "6px" }}
                     /> 
@@ -177,12 +177,12 @@ const DeviceDetails = () => {
                       style={{ width: '16px', height: '16px', marginRight: '4px' }}
                     /> 
                     <img
-                      src={VehicleIconUrl}
+                      src="assets/icons/car.svg"
                       alt="car Icon"
                       style={{ width: '16px', height: '16px', marginRight: '4px' }}
                     />
                     <img
-                      src={PlateIconUrl}
+                      src="/assets/icons/plate.svg"
                       alt="plate Icon"
                       style={{ width: '20px', height: '20px', marginRight: '4px' }}
                     />
@@ -205,13 +205,13 @@ const DeviceDetails = () => {
                       }}
                     >
                       <img  
-                        src={EditIconUrl}
+                        src="/assets/icons/edit.svg"
                         alt="Edit Icon"
                         style={{ width: '20px', height: '16px', marginRight: '4px' }}
                       />
                     </Box>
                     <img
-                      src={DeleteIconUrl}
+                      src="/assets/icons/delete.svg"
                       alt="Delete Icon"
                       style={{ width: '20px', height: '16px', marginRight: '4px' }}
                     />

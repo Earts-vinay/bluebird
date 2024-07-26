@@ -19,11 +19,12 @@ function App() {
           sx={{
             flexGrow: 1,
             p: 3,
-            background: 'linear-gradient(10deg, #FFFFFF 0%, #F1FAFF 100%)'
+            background: 'linear-gradient(87deg, #FFFFFF 0%, #F1FAFF 100%)',
+            height:"95vh"
           }}
         >
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/devices" element={<Devices />} />
             <Route path="/users" element={<Users />} />
             <Route path="/settings" element={<Settings />} />
