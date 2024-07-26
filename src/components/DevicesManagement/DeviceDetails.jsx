@@ -99,7 +99,7 @@ const DeviceDetails = () => {
       <Box sx={{ display: "flex", flexDirection: 'row' }}> 
         <Typography sx={{ color: "#7A9AAE", fontSize: 14 }}  onClick={callDevices}>Devices</Typography>
         <img
-                      src="/assets/icons/forward.svg"
+                      src={ForwardIconUrl}
                       alt="forward Icon"
                       style={{ width: '8px', height: '8px', marginRight: '4px', paddingLeft: "5px", paddingTop: "6px" }}
                     /> 
