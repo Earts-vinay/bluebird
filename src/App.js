@@ -6,8 +6,8 @@ import Devices from './pages/Devices';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
 import Sidenav from './components/Sidenav';
-import DeviceDetails from './components/DeviceDetails';
-import EditDevices from "./components/EditDevices";
+import DeviceDetails from './components/DevicesManagement/DeviceDetails';
+import EditDevices from "./components/DevicesManagement/EditDevices";
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
             <Route path="/users" element={<Users />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/devices/devicedetails" element={<DeviceDetails />} />
-            <Route path="/editdevice" element={<EditDevices />} />
+            <Route path="/devices/editdevice" element={<EditDevices />} />
           </Routes>
         </Box>
       </Box>

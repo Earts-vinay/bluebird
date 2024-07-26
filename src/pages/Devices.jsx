@@ -30,7 +30,7 @@ const Devices = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRowIndex, setSelectedRowIndex] = useState(0); 
   const navigate = useNavigate();
-
+  const LocationIconUrl =  process.env.PUBLIC_URL + '/assets/icons/location.svg';
   
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -140,7 +140,7 @@ const Devices = () => {
                       <Typography sx={{ marginBottom: '4px' }}>{row.propertyName}</Typography>
                       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img
-                          src="/assets/icons/location.svg"
+                          src={LocationIconUrl}
                           alt="Location Icon"
                           style={{ width: '16px', height: '16px', marginRight: '4px' }}
                         />
