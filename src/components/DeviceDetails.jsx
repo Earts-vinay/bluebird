@@ -31,6 +31,8 @@ const DeviceDetails = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRowIndex, setSelectedRowIndex] = useState(0); 
   const navigate = useNavigate();
+  const EditIconUrl = process.env.PUBLIC_URL + '/assets/icons/edit.svg';
+  const DeleteIconUrl= process.env.PUBLIC_URL + '/assets/icons/delete.svg';
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -114,7 +116,6 @@ const DeviceDetails = () => {
                 fontWeight: "545",
                 fontSize: '14px',
                 textAlign: 'center',
-                // Apply border radius to first and last cells
                 '&:first-of-type': {
                   borderTopLeftRadius: '10px',
                 },

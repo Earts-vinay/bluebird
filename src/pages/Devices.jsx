@@ -31,6 +31,7 @@ const Devices = () => {
   const [selectedRowIndex, setSelectedRowIndex] = useState(0); 
   const navigate = useNavigate();
 
+  
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
