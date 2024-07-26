@@ -116,7 +116,7 @@ const Sidenav = () => {
                                 onClick={() => handleItemClick('/')}
                                 sx={getItemStyle('/')}
                             >
-                                <ListItemIcon><Dashboard style={{ color: '#fff' }} /></ListItemIcon>
+                                <ListItemIcon><img src="/assets/icons/dashboard.svg" alt="" /></ListItemIcon>
                                 <ListItemText primary="Dashboard" />
                             </ListItem>
                             <ListItem
@@ -126,7 +126,7 @@ const Sidenav = () => {
                                 onClick={() => handleItemClick('/devices')}
                                 sx={getItemStyle('/devices')}
                             >
-                                <ListItemIcon><Devices style={{ color: '#fff' }} /></ListItemIcon>
+                                <ListItemIcon><img src="/assets/icons/devices.svg" alt="" /></ListItemIcon>
                                 <ListItemText primary="Devices" />
                             </ListItem>
                             <ListItem
@@ -136,7 +136,7 @@ const Sidenav = () => {
                                 onClick={() => handleItemClick('/users')}
                                 sx={getItemStyle('/users')}
                             >
-                                <ListItemIcon><People style={{ color: '#fff' }} /></ListItemIcon>
+                                <ListItemIcon><img src="/assets/icons/users.svg" alt="" /></ListItemIcon>
                                 <ListItemText primary="Users" />
                             </ListItem>
                             <ListItem
@@ -146,11 +146,11 @@ const Sidenav = () => {
                                 onClick={() => handleItemClick('/settings')}
                                 sx={getItemStyle('/settings')}
                             >
-                                <ListItemIcon><Settings style={{ color: '#fff' }} /></ListItemIcon>
+                                <ListItemIcon><img src="/assets/icons/settings.svg" alt="" /></ListItemIcon>
                                 <ListItemText primary="Settings" />
                             </ListItem>
                             <ListItem button>
-                                <ListItemIcon><Logout style={{ color: '#fff' }} /></ListItemIcon>
+                                <ListItemIcon><img src="/assets/icons/logout.svg" alt="" style={{color:"#fffff"}}/></ListItemIcon>
                                 <ListItemText primary="Logout" />
                             </ListItem>
                         </Box>
