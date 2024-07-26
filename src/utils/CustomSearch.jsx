@@ -16,7 +16,7 @@ const CustomSearch = ({ value, onChange, placeholder = 'Search...', width = 'aut
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
-            <SearchIcon />
+            <SearchIcon sx={{ color: '#9EA6B6' }} />
           </InputAdornment>
         ),
       }}
