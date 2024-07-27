@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Grid, useMediaQuery, useTheme } from '@mui/material';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import CustomSearch from '../utils/CustomSearch';
+import MapComponent from '../utils/MapComponent';
 
 const tableData = [
   { id: 1, name: 'Item 1', description: 'Description 1' },
@@ -18,10 +18,6 @@ const markers = [
   { id: 5, position: { lat: 17.383044, lng: 78.486671 } },
 ];
 
-const mapContainerStyle = {
-  width: '100%',
-  height: '400px',
-};
 
 const center = {
   lat: 17.385044,
@@ -34,13 +30,15 @@ const Dashboard = () => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 2, flexDirection: isSmallScreen ? 'column' : 'row' }}>
-        <Typography variant="h4" sx={{ marginBottom: isSmallScreen ? 2 : 0 }}>Dashboard</Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 1, flexDirection: isSmallScreen ? 'column' : 'row' }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Box sx={{ justifyContent: "center", display: "flex", p: 1, width: '30px', backgroundColor: '#000', borderRadius: '50%', }}><img src="/assets/icons/dashboard.svg" alt="" /></Box>
+          <Typography variant="h6" sx={{ marginBottom: isSmallScreen ? 2 : 0 }}>Dashboard</Typography>
+        </Box>
         <CustomSearch />
       </Box>
       <Grid container spacing={2} sx={{ padding: 2 }}>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6">Table with Dummy Content</Typography>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -63,18 +61,7 @@ const Dashboard = () => {
           </TableContainer>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6">Map with Default Locations</Typography>
-          <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-            <GoogleMap
-              mapContainerStyle={mapContainerStyle}
-              center={center}
-              zoom={12}
-            >
-              {markers.map((marker) => (
-                <Marker key={marker.id} position={marker.position} />
-              ))}
-            </GoogleMap>
-          </LoadScript>
+          <MapComponent center={center} markers={markers} zoom={16}/>
         </Grid>
       </Grid>
     </>

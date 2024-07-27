@@ -20,7 +20,7 @@ function App() {
             flexGrow: 1,
             p: 3,
             background: 'linear-gradient(87deg, #FFFFFF 0%, #F1FAFF 100%)',
-            height:"95vh"
+            height:"92vh"
           }}
         >
           <Routes>
