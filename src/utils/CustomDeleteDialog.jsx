@@ -39,19 +39,20 @@ const StyledButton = styled(Button)(({ theme, variant }) => ({
   }),
 }));
 
-const CustomDialog = ({ open, handleClose, handleConfirm, title, content, confirmText = "Delete", cancelText = "Cancel" }) => {
+const CustomDeleteDialog = ({ open, handleClose, handleConfirm, title, content, confirmText = "Delete", cancelText = "Cancel" }) => {
+  console.log("harish check this");
   return (
-    <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { width: '400px', maxWidth: '90%' ,borderRadius:"10px"} }}>
+    <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { width: '400px', maxWidth: '90%', borderRadius: "10px" } }}>
       <StyledDialogTitle>{title}</StyledDialogTitle>
       <DialogContent>
         <StyledDialogContentText>{content}</StyledDialogContentText>
       </DialogContent>
       <StyledDialogActions>
-        <StyledButton variant="cancel" onClick={handleClose}>{cancelText.toLowerCase()}</StyledButton>    
+        <StyledButton variant="cancel" onClick={handleClose}>{cancelText.toLowerCase()}</StyledButton>
         <StyledButton variant="delete" onClick={handleConfirm}>{confirmText.toLowerCase()}</StyledButton>
       </StyledDialogActions>
     </Dialog>
   );
 };
 
-export default CustomDialog;
+export default CustomDeleteDialog;
