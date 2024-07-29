@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Container,
   Typography,
   Box,
   Button,
@@ -30,7 +29,7 @@ const EditDevices = () => {
   };
 
   const handleSaveAndContinue = () => {
-    console.log("Save & Continue button clicked");
+    navigate("/devices/addline-polygon")
   };
 
   const handleDeviceNameChange = (event) => {
@@ -44,57 +43,62 @@ const EditDevices = () => {
   return (
     <>
       <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
-      <Box display="flex" alignItems="center" sx={{ pl: "0px" }}>
-          <Button
-            onClick={handleGoBack}
-            sx={{
-              borderRadius: '50%',
-              width: 35,
-              height: 35,
-              minWidth: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#E2E8F0',
-              color: 'white',
-            }}
-          >
-            <ArrowBackIosIcon sx={{ color: '#3275AF', paddingLeft: 1, fontSize: 18 }} />
-          </Button>
-          <Typography variant="h6" ml={5} sx={{ color: "#3275AF", fontSize:"18px" }}>
-            Devices
-          </Typography>
-        </Box>
+        <Grid item xs={12}>
+          <Box display="flex" alignItems="center" justifyContent="space-between">
+            <Box display="flex" alignItems="center">
+              <Button
+                onClick={handleGoBack}
+                sx={{
+                  borderRadius: '50%',
+                  width: 35,
+                  height: 35,
+                  minWidth: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: '#E2E8F0',
+                  color: 'white',
+                }}
+              >
+                <ArrowBackIosIcon sx={{ color: '#3275AF', paddingLeft: 1, fontSize: 18 }} />
+              </Button>
+              <Typography variant="h6" ml={2} sx={{ color: "#3275AF", fontSize: "18px" }}>
+                Devices
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <CustomButton 
+                label="Cancel" 
+                onClick={handleCancel} 
+                sx={{ marginRight: '10px', color:"#7A9AAE", backgroundColor:"white", textTransform: 'none', borderRadius:"10px", paddingRight:"20px", paddingLeft:"20px"}} 
+              >
+                Cancel
+              </CustomButton>
+              <CustomButton 
+                label="Save & Continue" 
+                onClick={handleSaveAndContinue} 
+                sx={{ color:"white", backgroundColor:"#187BCD", textTransform: 'none', borderRadius:"10px"}}
+              >
+                Save & Continue
+              </CustomButton>
+            </Box>
+          </Box>
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={6}>
-      <Box display="flex"justifyContent='flex-end'>
-          <CustomButton 
-            label="Cancel" 
-            onClick={handleCancel} 
-            sx={{ marginRight: '10px', color:"#7A9AAE", backgroundColor:"white", textTransform: 'none', borderRadius:"10px", paddingRight:"20px", paddingLeft:"20px"}} 
-          >Cancel</CustomButton>
-          <CustomButton 
-            label="Save & Continue" 
-            onClick={handleSaveAndContinue} 
-            sx={{ color:"white", backgroundColor:"#187BCD", textTransform: 'none', borderRadius:"10px"}}
-          >Save & Continue</CustomButton>
-        </Box>
-      </Grid>
-      </Grid>
+
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          <Box sx={{ padding: '16px' }}>
+          <Box>
             <CustomTextField
               value={deviceName}
               onChange={handleDeviceNameChange}
               placeholder="device name"
-              sx={{ width: "100%", fontSize:"8px" }}
+              sx={{ width: "100%", fontSize: "8px" }}
             />
             <CustomTextField
               value={deviceName}   
               placeholder="pole name"
-              sx={{ width: "100%"}}
+              sx={{ width: "100%" }}
             />
             <CustomTextField
               value={deviceName}      
@@ -104,7 +108,7 @@ const EditDevices = () => {
             <CustomTextField
               value={deviceName}            
               placeholder="latitude"
-              sx={{ width: "100%"}}
+              sx={{ width: "100%" }}
             />
             <CustomTextField
               value={deviceName}
@@ -126,7 +130,7 @@ const EditDevices = () => {
           </Box>
         </Grid>
       </Grid>
-      </>
+    </>
   );
 };
 

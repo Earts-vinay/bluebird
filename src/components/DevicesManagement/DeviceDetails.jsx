@@ -17,6 +17,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CustomSearch from '../../utils/CustomSearch'; 
 import { useNavigate } from 'react-router-dom';
 import CustomDeleteDialog from "../../utils/CustomDeleteDialog";
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 const sampleData = [
   { cameraName: "dev_248_cam_0", LatLng: "37.3585/-121.8768", poleName: "pole_001", lines: "Test Line", polygons: "polygon" },
@@ -78,6 +82,20 @@ const DeviceDetails = () => {
   const handleDelete = () => {
     setOpen(false);
   }
+  const breadcrumbs = [
+    <Link underline="hover" key="1" color="#7A9AAE" href="/devices" >
+      Devices
+    </Link>,
+    <Link
+      underline="hover"
+      key="2"
+      color="#187BCD"
+      href="/devices/devicedetails"
+    
+    >
+      Devices details
+    </Link>,
+  ];
 
   return (
     <>
@@ -111,15 +129,14 @@ const DeviceDetails = () => {
           placeholder="Search..."
         />
       </Box>
-      <Box sx={{ display: "flex", flexDirection: 'row' }}> 
-        <Typography sx={{ color: "#7A9AAE", fontSize: 14 }}  onClick={callDevices}>Devices</Typography>
-        <img
-                      src={ForwardIconUrl}
-                      alt="forward Icon"
-                      style={{ width: '8px', height: '8px', marginRight: '4px', paddingLeft: "5px", paddingTop: "6px" }}
-                    /> 
-        <Typography sx={{ color: "#187BCD", fontSize: 14,marginLeft:"5px" }}> Device details</Typography>
-      </Box>
+      <Stack spacing={2}>
+      <Breadcrumbs
+        separator={<NavigateNextIcon fontSize="small" color='#7A9AAE' />}
+        aria-label="breadcrumb"
+      >
+        {breadcrumbs}
+      </Breadcrumbs>
+    </Stack>
       <Box sx={{ marginTop: '46px' }}>
         <TableContainer
           component={Paper}

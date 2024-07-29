@@ -8,6 +8,7 @@ import Settings from './pages/Settings';
 import Sidenav from './components/Sidenav';
 import DeviceDetails from './components/DevicesManagement/DeviceDetails';
 import EditDevices from "./components/DevicesManagement/EditDevices";
+import AddLinePolygon from './components/DevicesManagement/AddLinePolygon';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/devices/devicedetails" element={<DeviceDetails />} />
             <Route path="/devices/editdevice" element={<EditDevices />} />
+            <Route path="/devices/addline-polygon" element={<AddLinePolygon/>} />
           </Routes>
         </Box>
       </Box>
