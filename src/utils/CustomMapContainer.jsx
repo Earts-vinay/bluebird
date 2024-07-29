@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
 
-
-const CustomMapContainer = ({ latitude, longitude, defaultCenter, zoom , height = "60vh", width = "100%" }) => {
+const CustomMapContainer = ({ 
+  latitude, 
+  longitude, 
+  defaultCenter, 
+  zoom, 
+  height = "60vh", 
+  width = "100%", 
+  markers = [] 
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -14,6 +21,7 @@ const CustomMapContainer = ({ latitude, longitude, defaultCenter, zoom , height 
     width: width,
     borderRadius: "10px",
   };
+  
   const mapOptions = {
     mapTypeControl: false,
     streetViewControl: false,
@@ -48,9 +56,13 @@ const CustomMapContainer = ({ latitude, longitude, defaultCenter, zoom , height 
       },
     ],
   };
-  
+
   const markerOptions = {
     cursor: 'default',
+  };
+
+  const isValidMarker = (marker) => {
+    return marker.latitude && !isNaN(marker.latitude) && marker.longitude && !isNaN(marker.longitude);
   };
 
   return (
@@ -63,8 +75,19 @@ const CustomMapContainer = ({ latitude, longitude, defaultCenter, zoom , height 
             center={defaultCenter}
             options={mapOptions}
           >
-            
-            {latitude &&
+            {markers.length > 0 ? (
+              markers.filter(isValidMarker).map((marker, index) => (
+                <MarkerF
+                  key={index}
+                  position={{
+                    lat: parseFloat(marker.latitude),
+                    lng: parseFloat(marker.longitude),
+                  }}
+                  options={markerOptions}
+                />
+              ))
+            ) : (
+              latitude &&
               !isNaN(latitude) &&
               longitude &&
               !isNaN(longitude) && (
@@ -75,7 +98,8 @@ const CustomMapContainer = ({ latitude, longitude, defaultCenter, zoom , height 
                   }}
                   options={markerOptions}
                 />
-              )}
+              )
+            )}
           </GoogleMap>
         </LoadScript>
       )}

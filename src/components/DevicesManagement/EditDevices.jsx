@@ -122,7 +122,7 @@ const EditDevices = () => {
               height: '90vh' 
             }}
           >
-            <CustomMapContainer latitude={latitude} longitude={longitude} defaultCenter={defaultCenter} zoom={zoom} />
+            <CustomMapContainer latitude={latitude} longitude={longitude} defaultCenter={defaultCenter} zoom={zoom}  />
           </Box>
         </Grid>
       </Grid>

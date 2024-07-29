@@ -10,12 +10,13 @@ import {
   Paper,
   Typography,
   Box,
-  Button
+  Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CustomSearch from '../../utils/CustomSearch'; 
 import { useNavigate } from 'react-router-dom';
+import CustomDeleteDialog from "../../utils/CustomDeleteDialog";
 
 const sampleData = [
   { cameraName: "dev_248_cam_0", LatLng: "37.3585/-121.8768", poleName: "pole_001", lines: "Test Line", polygons: "polygon" },
@@ -31,12 +32,14 @@ const DeviceDetails = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRowIndex, setSelectedRowIndex] = useState(0); 
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
   const EditIconUrl = process.env.PUBLIC_URL + '/assets/icons/edit.svg';
   const DeleteIconUrl= process.env.PUBLIC_URL + '/assets/icons/delete.svg';
   const PersonIconUrl =process.env.PUBLIC_URL + '/assets/icons/person.svg';
   const VehicleIconUrl =process.env.PUBLIC_URL + '/assets/icons/car.svg';
   const PlateIconUrl = process.env.PUBLIC_URL + '/assets/icons/plate.svg';
   const ForwardIconUrl =  process.env.PUBLIC_URL + '/assets/icons/forward.svg';
+  
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -62,6 +65,18 @@ const DeviceDetails = () => {
 
   const editDevices = () =>{
     navigate("/devices/editdevice")
+  }
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleDelete = () => {
+    setOpen(false);
   }
 
   return (
@@ -212,6 +227,10 @@ const DeviceDetails = () => {
                     </Box>
                     <img
                       src={DeleteIconUrl}
+                      onClick={(e) => {
+                      e.stopPropagation();
+                          handleClickOpen();
+                       }}
                       alt="Delete Icon"
                       style={{ width: '20px', height: '16px', marginRight: '4px' }}
                     />
@@ -222,6 +241,14 @@ const DeviceDetails = () => {
           </Table>
         </TableContainer>
       </Box>
+      <CustomDeleteDialog
+        open={open}
+        handleClose={handleClose}
+        handleConfirm={handleDelete}
+        title="Do you want to delete the device?"
+        content="Please confirm to delete the device."
+         confirmText="Delete" cancelText="Cancel"
+      />
     </>
   );
 };
