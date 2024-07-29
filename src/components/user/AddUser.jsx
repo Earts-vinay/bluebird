@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const AddUser = ({ setIsAddingUser, setBreadcrumbs }) => {
     console.log("Add user re-rendered");
     const navigate = useNavigate();
+    const [uploadedImage, setUploadedImage] = useState(null);
 
     const formik = useFormik({
         initialValues: {
@@ -23,7 +24,18 @@ const AddUser = ({ setIsAddingUser, setBreadcrumbs }) => {
         navigate('/users');
         setIsAddingUser(false);
         setBreadcrumbs([]);
-    }
+    };
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+            setUploadedImage(reader.result);
+        };
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
 
     return (
         <Box
@@ -81,9 +93,18 @@ const AddUser = ({ setIsAddingUser, setBreadcrumbs }) => {
                                 borderRadius: '50%',
                                 textAlign: 'center',
                                 fontSize: '50px',
+                                overflow: 'hidden',
                             }}
                         >
-                            JD
+                            {uploadedImage ? (
+                                <img
+                                    src={uploadedImage}
+                                    alt="Uploaded"
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                                />
+                            ) : (
+                                'JD'
+                            )}
                         </Box>
 
                         <Box
@@ -118,6 +139,7 @@ const AddUser = ({ setIsAddingUser, setBreadcrumbs }) => {
                                 <input
                                     type="file"
                                     hidden
+                                    onChange={handleImageUpload}
                                 />
                             </Button>
                             <Typography sx={{ fontSize: '15px', marginTop: '10px', color: '#013A6F' }}>
@@ -125,7 +147,6 @@ const AddUser = ({ setIsAddingUser, setBreadcrumbs }) => {
                                 Format Supported: .jpg & .png
                             </Typography>
                         </Box>
-
                     </Box>
                 </Box>
 

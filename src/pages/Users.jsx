@@ -48,9 +48,9 @@ const Users = () => {
   }
 
   const sampleData = [
-    { userName: "Amruta_Test", property: "Ikea Test", AccessLevel: "Property Viewer", action: "edit" },
-    { userName: "Amruta_Test2", property: "Ikea Test2", AccessLevel: "Property Admin", action: "delete" },
-    { userName: "Amruta_Test3", property: "Ikea Test3", AccessLevel: "Property Viewer", action: "edit" },
+    { userName: "Amruta_Test", property: "Ikea Test", AccessLevel: "Property Viewer", },
+    { userName: "Amruta_Test2", property: "Ikea Test2", AccessLevel: "Property Admin", },
+    { userName: "Amruta_Test3", property: "Ikea Test3", AccessLevel: "Property Viewer", },
   ];
 
   const columns = [
