@@ -4,7 +4,7 @@ import { styled } from '@mui/system';
 
 const CustomConnector = styled(StepConnector)(({ theme }) => ({
   '&.MuiStepConnector-alternativeLabel': {
-    top: 25,
+    top: 25, 
   },
   '&.MuiStepConnector-active .MuiStepConnector-line': {
     borderColor: '#FE9A84',

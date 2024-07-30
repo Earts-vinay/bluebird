@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Grid, Box, Typography, Button, Stack, Breadcrumbs, Table,
+import { Grid, Box, Typography, Button, Stack, Breadcrumbs,Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper } from '@mui/material';
+  Paper, } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import CustomButton from '../../utils/CustomButton';
@@ -15,13 +15,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Link from '@mui/material/Link';
 import CustomSteperIcons from '../../utils/CustomSteperIcons';
-import CustomConnector from '../../utils/CustomConnector';
+import CustomConnector from '../../utils/CustomConnector'; 
 
 const steps = [
   { label: '1.Pair device', icon1: '/assets/icons/steperactive.svg', description: 'Add devices details and save.' },
   { label: '2.Set-up device', icon1: '/assets/icons/steperactive.svg', description: 'Set the camera angle using the joystick' },
-  { label: '3.Add line/polygon', icon3: '/assets/icons/steper-progress.svg', description: 'Click on Add line/Add polygon to set your angle on the camera view.' },
-  { label: '4.Finish set-up', icon2: '/assets/icons/steperinactive.svg', description: 'Done adding line/polygon? Now click on Finish to complete set-up' },
+  { label: '3.Add line/polygon', icon3: '/assets/icons/steper-progress.svg',  description: 'Click on Add line/Add polygon to set your angle on the camera view.' },
+  { label: '4.Finish set-up',  icon2: '/assets/icons/steperinactive.svg', description: 'Done adding line/polygon? Now click on Finish to complete set-up' },
 ];
 
 const sampleData = [
@@ -29,6 +29,7 @@ const sampleData = [
   { name: "Testdata", linePoly: "Line", zone: "Testing" },
   { name: "Testdata", linePoly: "Line", zone: "Testing"},
   { name: "Testdata", linePoly: "Line",zone: "Testing"},
+ 
 ];
 
 const breadcrumbs = [
@@ -75,7 +76,6 @@ const AddLinePolygon = () => {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
@@ -147,175 +147,178 @@ const AddLinePolygon = () => {
               ))}
             </Stepper>
           </Box>
-          <Grid container spacing={2} sx={{ height: '100%' }}>
-            <Grid item xs={12} md={5.5} sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Box sx={{ border: "2px solid #8080801a", backgroundColor: "white", flex: 1 }}>
-                <TableContainer
-                  component={Paper}
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}  >
+              <Box sx={{border:"2px solid #8080801a", backgroundColor:"white", padding: 2 , height:"80vh"}}>
+              <TableContainer
+          component={Paper}
+          sx={{
+            border: 'none',
+            backgroundColor: 'transparent', 
+            boxShadow: 'none', 
+            '& .MuiTableHead-root': {
+              backgroundColor: '#FDFBEA', 
+              color: '#000000', 
+              '& th': {
+                padding: '10px 16px',
+                fontWeight: "545",
+                fontSize: '14px',
+                textAlign: 'center',
+                '&:first-of-type': {
+                  borderTopLeftRadius: '10px',
+                },
+                '&:last-of-type': {
+                  borderTopRightRadius: '10px',
+                },
+              },
+            },
+            '& .MuiTableCell-root': {
+              border: 'none', 
+              fontSize: '14px',
+            },
+          }}
+        >
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell sx={{ textAlign: 'center', padding: '10px 16px' }}>Name</TableCell>
+                <TableCell sx={{ padding: '10px 16px', textAlign: 'center' }}>Line/Polygon</TableCell>
+                <TableCell sx={{ padding: '10px 16px', textAlign: 'center' }}>Detection</TableCell>
+                <TableCell sx={{ padding: '10px 16px', textAlign: 'center' }}>Zone</TableCell>
+                <TableCell sx={{ padding: '10px 16px', textAlign: 'center' }}>Action</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell colSpan={7} sx={{ padding: '5px', backgroundColor: 'transparent' }} />
+              </TableRow>
+              {sampleData.map((row, index) => (
+                <TableRow
+                  key={index}
+                  selected={index === selectedRowIndex}
                   sx={{
-                    border: 'none',
-                    backgroundColor: 'transparent',
-                    boxShadow: 'none',
-                    '& .MuiTableHead-root': {
-                      backgroundColor: '#FDFBEA',
-                      color: '#000000',
-                      '& th': {
-                        padding: '10px 16px',
-                        fontWeight: "545",
-                        fontSize: '14px',
-                        textAlign: 'center',
-                        '&:first-of-type': {
-                          borderTopLeftRadius: '10px',
-                        },
-                        '&:last-of-type': {
-                          borderTopRightRadius: '10px',
-                        },
-                      },
-                    },
-                    '& .MuiTableCell-root': {
-                      border: 'none',
-                      fontSize: '14px',
-                    },
+                    backgroundColor: index === selectedRowIndex ? '#E9F4FB' : 'inherit',
+                    borderRadius: index === selectedRowIndex ? '10px' : '0',
+                    marginTop: index === 0 ? '10px' : '0',
                   }}
                 >
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell sx={{ textAlign: 'center', padding: '10px 16px' }}>Name</TableCell>
-                        <TableCell sx={{ padding: '10px 16px', textAlign: 'center' }}>Line/Polygon</TableCell>
-                        <TableCell sx={{ padding: '10px 16px', textAlign: 'center' }}>Detection</TableCell>
-                        <TableCell sx={{ padding: '10px 16px', textAlign: 'center' }}>Zone</TableCell>
-                        <TableCell sx={{ padding: '10px 16px', textAlign: 'center' }}>Action</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell colSpan={7} sx={{ padding: '5px', backgroundColor: 'transparent' }} />
-                      </TableRow>
-                      {sampleData.map((row, index) => (
-                        <TableRow
-                          key={index}
-                          selected={index === selectedRowIndex}
-                          sx={{
-                            backgroundColor: index === selectedRowIndex ? '#E9F4FB' : 'inherit',
-                            borderRadius: index === selectedRowIndex ? '10px' : '0',
-                            marginTop: index === 0 ? '10px' : '0',
-                          }}
-                        >
-                          <TableCell sx={{ padding: '20px 20px', textAlign: 'center', borderRadius: index === 0 ? '10px 0 0 10px' : '0', }} >
-                            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                              <Typography sx={{ marginBottom: '4px' }}>{row.name}</Typography>
-                            </Box>
-                          </TableCell>
-                          <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>{row.linePoly}</TableCell>
-                          <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>
-                            <img
-                              src={PersonIconUrl}
-                              alt="person Icon"
-                              style={{ width: '16px', height: '16px', marginRight: '4px' }}
-                            />
-                            <img
-                              src={VehicleIconUrl}
-                              alt="car Icon"
-                              style={{ width: '16px', height: '16px', marginRight: '4px' }}
-                            />
-                            <img
-                              src={PlateIconUrl}
-                              alt="plate Icon"
-                              style={{ width: '20px', height: '20px', marginRight: '4px' }}
-                            />
-                          </TableCell>
-                          <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>{row.zone}</TableCell>
-                          <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>
-                            <Box
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                // editDevices();
-                              }}
-                              sx={{
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                '&:hover': {
-                                  backgroundColor: '#AAD8FD',
-                                  borderRadius: '5px'
-                                },
-                                padding: '5px'
-                              }}
-                            >
-                              <img
-                                src={EditIconUrl}
-                                alt="Edit Icon"
-                                style={{ width: '20px', height: '16px', marginRight: '4px' }}
-                              />
-                            </Box>
-                            <img
-                              src={DeleteIconUrl}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleClickOpen();
-                              }}
-                              alt="Delete Icon"
-                              style={{ width: '20px', height: '16px', marginRight: '4px' }}
-                            />
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={6.5} sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Box sx={{ position: 'relative', border: "2px solid #8080801a", padding: 2, flex: 1 }}>
-                {/* Container for image and icons */}
-                <Box sx={{ position: 'relative' }}>
-                  <img
-                    src={SampleImage}
-                    alt="Sample Image"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', backgroundColor: "white" }}
-                  />
-                  {/* Icons inside the image */}
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      bottom: 16,
-                      left: 16,
-                      display: 'flex',
-                    }}
-                  >
+                  <TableCell sx={{ padding: '20px 20px', textAlign: 'center',   borderRadius: index === 0 ? '10px 0 0 10px' : '0',  }} >
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                      <Typography sx={{ marginBottom: '4px' }}>{row.name}</Typography>
+                    </Box>
+                  </TableCell>
+                  <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>{row.linePoly}</TableCell>
+                  <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>
                     <img
-                      src={EditBackgroundIconUrl}
-                      alt="Edit Icon"
-                      style={{ width: 50, height: 50, cursor: 'pointer' }}
-                      onClick={() => console.log("Edit icon clicked")}
+                      src={PersonIconUrl}
+                      alt="person Icon"
+                      style={{ width: '16px', height: '16px', marginRight: '4px' }}
+                    /> 
+                    <img
+                      src={VehicleIconUrl}
+                      alt="car Icon"
+                      style={{ width: '16px', height: '16px', marginRight: '4px' }}
                     />
                     <img
-                      src={ResetIconUrl}
-                      alt="Reset Icon"
-                      style={{ width: 50, height: 50, cursor: 'pointer' }}
-                      onClick={() => console.log("Reset icon clicked")}
+                      src={PlateIconUrl}
+                      alt="plate Icon"
+                      style={{ width: '20px', height: '20px', marginRight: '4px' }}
                     />
-                  </Box>
-                </Box>
-                <Box display="flex" justifyContent="flex-end" pt={3}>
-                  <CustomButton
-                    label="Add Line"
-                    onClick={handleCancel}
-                    sx={{ marginRight: '10px', color: "#187BCD", backgroundColor: "white", textTransform: 'none', borderRadius: "10px", paddingRight: "20px", paddingLeft: "20px", border: "1px solid #187BCD" }}
+                  </TableCell>
+                  <TableCell sx={{ padding: '20px 20px', textAlign: 'center' }}>{row.zone}</TableCell>
+                  <TableCell  sx={{ padding: '20px 20px', textAlign: 'center' }}
                   >
-                    Add Line
-                  </CustomButton>
-                  <CustomButton
-                    label="Add Polygon"
-                    onClick={handleFinish}
-                    sx={{ color: "#187BCD", backgroundColor: "white", textTransform: 'none', borderRadius: "10px", border: "1px solid #187BCD" }}
-                  >
-                    Add Polygon
-                  </CustomButton>
-                </Box>
+                  <Box     onClick={(e) => {
+                        e.stopPropagation(); 
+                        // editDevices();
+                      }}
+                      sx={{ 
+                        display: 'inline-flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        '&:hover': {
+                          backgroundColor: '#AAD8FD',
+                          borderRadius: '5px'
+                        },
+                        padding: '5px' 
+                      }}
+                    >
+                      <img  
+                        src={EditIconUrl}
+                        alt="Edit Icon"
+                        style={{ width: '20px', height: '16px', marginRight: '4px' }}
+                      />
+                    </Box>
+                    <img
+                      src={DeleteIconUrl}
+                      onClick={(e) => {
+                      e.stopPropagation();
+                          handleClickOpen();
+                       }}
+                      alt="Delete Icon"
+                      style={{ width: '20px', height: '16px', marginRight: '4px' }}
+                    />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
               </Box>
             </Grid>
+            <Grid item xs={12} md={6} >
+  <Box sx={{ position: 'relative', border: "2px solid #8080801a", padding: 2 ,backgroundColor:"white",height:"80vh"}}>
+    {/* Container for image and icons */}
+    <Box sx={{ position: 'relative', }}>
+      <img
+        src={SampleImage}
+        alt="Sample Image"
+        style={{ width: '100%', height: '70vh', objectFit: 'cover', backgroundColor:"white" }}  
+      />
+      {/* Icons inside the image */}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: 16, // Adjust as needed
+          left: 16, // Adjust as needed
+          display: 'flex',
+          gap: 1, // Adjust spacing between icons as needed
+        }}
+      >
+        <img
+          src={EditBackgroundIconUrl}
+          alt="Edit Icon"
+          style={{ width: 50, height: 50, cursor: 'pointer' }}
+          onClick={() => console.log("Edit icon clicked")}
+        />
+        <img
+          src={ResetIconUrl}
+          alt="Reset Icon"
+          style={{ width: 50, height: 50, cursor: 'pointer' }}
+          onClick={() => console.log("Reset icon clicked")}
+        />
+      </Box>
+    </Box>
+    <Box display="flex" justifyContent="flex-end" pt={3}>
+      <CustomButton
+        label="Add Line"
+        onClick={handleCancel}
+        sx={{ marginRight: '10px', color: "#187BCD", backgroundColor: "white", textTransform: 'none', borderRadius: "10px", paddingRight: "20px", paddingLeft: "20px", border: "1px solid #187BCD" }}
+      >
+        Add Line
+      </CustomButton>
+      <CustomButton
+        label="Add Polygon"
+        onClick={handleFinish}
+        sx={{ color: "#187BCD", backgroundColor: "white", textTransform: 'none', borderRadius: "10px", border: "1px solid #187BCD" }}
+      >
+        Add Polygon
+      </CustomButton>
+    </Box>
+  </Box>
+</Grid>
+
+
           </Grid>
         </Box>
       </Grid>
