@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import ReactCropper from './ReactCropper';
 
 const AddUser = ({ setIsAddingUser, setBreadcrumbs }) => {
     console.log("Add user re-rendered");
     const navigate = useNavigate();
     const [uploadedImage, setUploadedImage] = useState(null);
+    const [showCropper, setShowCropper] = useState(false);
 
     const formik = useFormik({
         initialValues: {
@@ -31,10 +33,16 @@ const AddUser = ({ setIsAddingUser, setBreadcrumbs }) => {
         const reader = new FileReader();
         reader.onload = () => {
             setUploadedImage(reader.result);
+            setShowCropper(true);
         };
         if (file) {
             reader.readAsDataURL(file);
         }
+    };
+
+    const handleSaveCroppedImage = (croppedImage) => {
+        setUploadedImage(croppedImage);
+        setShowCropper(false);
     };
 
     return (
@@ -341,8 +349,17 @@ const AddUser = ({ setIsAddingUser, setBreadcrumbs }) => {
                     </Box>
                 </form>
             </Box>
+
+            {showCropper && (
+                <ReactCropper
+                    showModal={showCropper}
+                    onModalClose={() => setShowCropper(false)}
+                    imgURL={uploadedImage}
+                    onSaveHandler={handleSaveCroppedImage}
+                />
+            )}
         </Box>
     );
-}
+};
 
 export default AddUser;

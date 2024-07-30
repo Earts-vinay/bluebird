@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import ReactCropper from './ReactCropper';
 
 const EditUser = ({ setIsEditingUser, setBreadcrumbs }) => {
   console.log("Add user re-rendered");
   const navigate = useNavigate();
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [showCropper, setShowCropper] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -24,6 +27,23 @@ const EditUser = ({ setIsEditingUser, setBreadcrumbs }) => {
     setIsEditingUser(false);
     setBreadcrumbs([]);
   }
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      setUploadedImage(reader.result);
+      setShowCropper(true);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSaveCroppedImage = (croppedImage) => {
+    setUploadedImage(croppedImage);
+    setShowCropper(false);
+  };
 
   return (
     <Box
@@ -81,9 +101,20 @@ const EditUser = ({ setIsEditingUser, setBreadcrumbs }) => {
                 borderRadius: '50%',
                 textAlign: 'center',
                 fontSize: '50px',
+                overflow: 'hidden'
               }}
             >
-              JD
+              {
+                uploadedImage ? (
+                  <img
+                    src={uploadedImage}
+                    alt='Uploaded'
+                    style={{ width: '100%', height: "100%", objectFit: 'cover', borderRadius: '50%' }}
+                  />
+                ) : (
+                  'JD'
+                )
+              }
             </Box>
 
             <Box
@@ -118,6 +149,7 @@ const EditUser = ({ setIsEditingUser, setBreadcrumbs }) => {
                 <input
                   type="file"
                   hidden
+                  onChange={handleImageUpload}
                 />
               </Button>
               <Typography sx={{ fontSize: '15px', marginTop: '10px', color: '#013A6F' }}>
@@ -320,6 +352,15 @@ const EditUser = ({ setIsEditingUser, setBreadcrumbs }) => {
           </Box>
         </form>
       </Box>
+
+      {showCropper && (
+        <ReactCropper
+          showModal={showCropper}
+          onModalClose={() => setShowCropper(false)}
+          imgURL={uploadedImage}
+          onSaveHandler={handleSaveCroppedImage}
+        />
+      )}
     </Box>
   );
 }
