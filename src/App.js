@@ -28,7 +28,8 @@ function App() {
           component="main"
           sx={{
             flexGrow: 1,
-            p: 3,
+            px: 3,
+            py:2.5
           }}
         >
           <Routes>
