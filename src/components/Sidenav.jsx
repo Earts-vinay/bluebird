@@ -120,11 +120,11 @@ const Sidenav = () => {
                         <ListItem>
                             <Avatar sx={{ bgcolor: 'grey', width: '65px', height: '65px' }}>JD</Avatar>
                             <div style={{ marginLeft: '16px' }}>
-                                {open && <Typography variant='p'>Welcome,<br /> James Dho</Typography>}  {/* Conditional rendering */}
-                               { open && <Typography variant='p'>{formattedDate}</Typography>}
+                                {open && <Typography variant='p' sx={{fontFamily:"Montserrat, sans-serif"}}>Welcome,<br /> James Dho</Typography>}  <br/>
+                               {open && <Typography variant='p'>{formattedDate}</Typography>}
                             </div>
                         </ListItem>
-                        <Box sx={{ pt: 3, mx: 2, gap: 2, display: "flex", flexDirection: "column" }}>
+                        <Box sx={{ pt: 3, mx: 2, gap: 1, display: "flex", flexDirection: "column" }}>
                             <ListItem
                                 button
                                 component={Link}
