@@ -15,8 +15,11 @@ import {
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CustomSearch from '../utils/CustomSearch'; 
 import { useNavigate } from 'react-router-dom';
+import DefaultTable from '../utils/DefaultTable';
 
-const sampleData = [
+const tableHeadings =['Property Name', 'Raise Alerts', 'Cameras Installed', 'Active Cameras', 'Inactive Cameras',];
+const columns = ['propertyName', 'raiseAlerts', 'camerasInstalled', 'activeCameras', 'inactiveCameras', ];
+const rows = [
   { propertyName: "Ikea Test 01", raiseAlerts: 1, camerasInstalled: 0, activeCameras: 3, inactiveCameras: 1, propertyLocation: 'Virginia, USA.' },
   { propertyName: "Ikea Test 02", raiseAlerts: 1, camerasInstalled: 0, activeCameras: 3, inactiveCameras: 1, propertyLocation: 'Virginia, USA.' },
   { propertyName: "Ikea Test 03", raiseAlerts: 1, camerasInstalled: 0, activeCameras: 3, inactiveCameras: 1, propertyLocation: 'Virginia, USA.' },
@@ -36,7 +39,7 @@ const Devices = () => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredData = sampleData.filter((item) =>
+  const filteredData = rows.filter((item) =>
     item.propertyName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -81,7 +84,9 @@ const Devices = () => {
           placeholder="Search..."
         />
       </Box>
-      <Box sx={{ marginTop: '46px' }}>
+
+      <DefaultTable columns={columns} rows={filteredData} tableHeadings={tableHeadings} onClick={handleRowClick}/>
+      {/* <Box sx={{ marginTop: '46px' }}>
         <TableContainer
           component={Paper}
           sx={{
@@ -159,7 +164,7 @@ const Devices = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      </Box>
+      </Box> */}
     </>
   );
 };

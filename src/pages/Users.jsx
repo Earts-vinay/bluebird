@@ -48,13 +48,13 @@ const Users = () => {
   }
 
   const sampleData = [
-    { userName: "Amruta_Test", property: "Ikea Test", AccessLevel: "Property Viewer", },
-    { userName: "Amruta_Test2", property: "Ikea Test2", AccessLevel: "Property Admin", },
-    { userName: "Amruta_Test3", property: "Ikea Test3", AccessLevel: "Property Viewer", },
+    {pic:"jd", userName: "Amruta_Test", property: "Ikea Test", AccessLevel: "Property Viewer", },
+    {pic:"jd", userName: "Amruta_Test2", property: "Ikea Test2", AccessLevel: "Property Admin", },
+    {pic:"jd", userName: "Amruta_Test3", property: "Ikea Test3", AccessLevel: "Property Viewer", },
   ];
 
   const columns = [
-    // { id: 'pic', label: '', align: 'center' },
+    { id: 'pic', label: '', align: 'center' },
     { id: 'userName', label: 'User Name' },
     { id: 'property', label: 'Property', align: 'center' },
     { id: 'AccessLevel', label: 'Access Level', align: 'center' },

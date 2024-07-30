@@ -1,6 +1,7 @@
 import React from 'react';
-import { CssBaseline, Box } from '@mui/material';
+import { CssBaseline, Box, createTheme, ThemeProvider } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
 import Dashboard from './pages/Dashboard';
 import Devices from './pages/Devices';
 import Users from './pages/Users';
@@ -10,8 +11,16 @@ import DeviceDetails from './components/DevicesManagement/DeviceDetails';
 import EditDevices from "./components/DevicesManagement/EditDevices";
 import AddLinePolygon from './components/DevicesManagement/AddLinePolygon';
 
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Montserrat, sans-serif',
+    fontWeight:300,
+  },
+});
+
 function App() {
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <Box sx={{ display: 'flex' }}>
         <Sidenav />
@@ -20,8 +29,6 @@ function App() {
           sx={{
             flexGrow: 1,
             p: 3,
-            background: 'linear-gradient(87deg, #FFFFFF 0%, #F1FAFF 100%)',
-            height:"92vh"
           }}
         >
           <Routes>
@@ -36,6 +43,7 @@ function App() {
         </Box>
       </Box>
     </Router>
+    </ThemeProvider>
   );
 }
 
