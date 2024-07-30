@@ -158,7 +158,7 @@ const CustomTable = ({ columns, data, customStyles, handleEdit, handleClickOpen 
                         {data.map((row, rowIndex) => (
                             <TableRow key={rowIndex}>
                                 {columns.map((column) => (
-                                    <TableCell key={column.id} sx={{ padding: '27px 20px' }}>
+                                    <TableCell key={column.id} sx={{  width:"20px" }}>
                                         {column.id === 'pic' ? (
                                             <Box
                                                 sx={{
