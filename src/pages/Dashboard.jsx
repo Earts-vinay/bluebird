@@ -3,13 +3,16 @@ import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead
 import CustomSearch from '../utils/CustomSearch';
 import MapComponent from '../utils/MapComponent';
 import CustomMapContainer from '../utils/CustomMapContainer';
+import DefaultTable from '../utils/DefaultTable';
 
-const tableData = [
-  { id: 1, name: 'Super market 01', location: 'Virginia, USA', poles: 5 },
-  { id: 2, name: 'Super market 01', location: 'Virginia, USA', poles: 5 },
-  { id: 3, name: 'Super market 01', location: 'Virginia, USA', poles: 5 },
-  { id: 4, name: 'Super market 01', location: 'Virginia, USA', poles: 5 },
-  { id: 5, name: 'Super market 01', location: 'Virginia, USA', poles: 5 },
+const tableHeadings = ['Property Name', 'Poles',"Actions"];
+const columns = ['propertyName', 'location', 'poles',];
+const rows = [
+  {  propertyName: 'Super market 01', location: 'Virginia, USA', poles: 5 },
+  { propertyName: 'Super market 01', location: 'Virginia, USA', poles: 5 },
+  { propertyName: 'Super market 01', location: 'Virginia, USA', poles: 5 },
+  { propertyName: 'Super market 01', location: 'Virginia, USA', poles: 5 },
+  { propertyName: 'Super market 01', location: 'Virginia, USA', poles: 5 },
 ];
 
 const markers = [
@@ -40,37 +43,7 @@ const Dashboard = () => {
       </Box>
       <Grid container spacing={2} sx={{ padding: 2 }}>
         <Grid item xs={12} md={6}>
-          <TableContainer component={Paper} sx={{boxShadow: "none"}}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{width:"60%"}}>Property name</TableCell>
-                  <TableCell>Poles</TableCell>
-                  <TableCell>Actions</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {tableData.map((row) => (
-                  <TableRow 
-                    key={row.id}
-                    sx={{
-                      '&:hover': {
-                        backgroundColor: 'rgba(233, 244, 251, 1)',
-                      },
-                      border:"none"
-                    }}
-                  >
-                    <TableCell>{row.name}<br /><img src="/assets/icons/location.svg" alt="location icon" />{row.location}</TableCell>
-                    <TableCell>{row.poles}</TableCell>
-                    <TableCell>
-                      <IconButton><img src="/assets/icons/edit.svg" alt="edit icon" /></IconButton>
-                      <IconButton><img src="/assets/icons/delete.svg" alt="delete icon" /></IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+         <DefaultTable columns={columns} rows={rows} tableHeadings={tableHeadings}/>
         </Grid>
         <Grid item xs={12} md={6}>
           <CustomMapContainer defaultCenter={center} markers={markers} zoom={16} />

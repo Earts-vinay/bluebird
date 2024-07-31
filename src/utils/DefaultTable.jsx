@@ -40,6 +40,7 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
                 } else {
                   value = row[column];
                 }
+
                 return (
                   <TableCell
                     key={column}
@@ -72,7 +73,8 @@ const tablecontainer = {
   },
 };
 
-const getTableCellStyles = (colIndex) => ({
+// Function to get styles for table cell based on column index
+const getTableCellStyles = (columns,colIndex) => ({
   color: '#3F3F3F',
   fontSize: "13px",
   height: 40,
@@ -86,7 +88,7 @@ const getTableCellStyles = (colIndex) => ({
       borderBottomLeftRadius: '10px',
     },
   }),
-  ...(colIndex ===  1 && {
+  ...(colIndex === columns.length - 1 && {
     borderTopRightRadius: '10px',
     borderBottomRightRadius: '10px',
     '&:hover': {
