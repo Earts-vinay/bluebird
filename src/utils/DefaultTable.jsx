@@ -7,6 +7,31 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
     return null;
   }
 
+  // Function to get styles for table cell based on column index
+  const getTableCellStyles = (colIndex) => ({
+    color: '#3F3F3F',
+    fontSize: "13px",
+    height: 40,
+    border: 'none',
+    textAlign: 'center',
+    ...(colIndex === 0 && {
+      borderTopLeftRadius: '10px',
+      borderBottomLeftRadius: '10px',
+      '&:hover': {
+        borderTopLeftRadius: '10px',
+        borderBottomLeftRadius: '10px',
+      },
+    }),
+    ...(colIndex === columns.length - 1 && {
+      borderTopRightRadius: '10px',
+      borderBottomRightRadius: '10px',
+      '&:hover': {
+        borderTopRightRadius: '10px',
+        borderBottomRightRadius: '10px',
+      },
+    }),
+  });
+
   return (
     <TableContainer component={Paper} sx={tablecontainer}>
       <Table>
@@ -72,28 +97,3 @@ const tablecontainer = {
     textAlign: 'center',
   },
 };
-
-// Function to get styles for table cell based on column index
-const getTableCellStyles = (columns,colIndex) => ({
-  color: '#3F3F3F',
-  fontSize: "13px",
-  height: 40,
-  border: 'none',
-  textAlign: 'center',
-  ...(colIndex === 0 && {
-    borderTopLeftRadius: '10px',
-    borderBottomLeftRadius: '10px',
-    '&:hover': {
-      borderTopLeftRadius: '10px',
-      borderBottomLeftRadius: '10px',
-    },
-  }),
-  ...(colIndex === columns.length - 1 && {
-    borderTopRightRadius: '10px',
-    borderBottomRightRadius: '10px',
-    '&:hover': {
-      borderTopRightRadius: '10px',
-      borderBottomRightRadius: '10px',
-    },
-  }),
-});
