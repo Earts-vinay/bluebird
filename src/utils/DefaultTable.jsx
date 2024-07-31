@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 
-const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActionIcons, onClick }) => {
+const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActionIcons,getPairButtons, onClick }) => {
   if (!Array.isArray(columns) || !Array.isArray(rows)) {
     console.error('Invalid columns or rows');
     return null;
@@ -11,9 +11,8 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
   const getTableCellStyles = (colIndex) => ({
     color: '#3F3F3F',
     fontSize: "13px",
-    height: 40,
     border: 'none',
-    textAlign: 'center',
+    textAlign: colIndex === 0 ? 'left' : 'center',
     ...(colIndex === 0 && {
       borderTopLeftRadius: '10px',
       borderBottomLeftRadius: '10px',
@@ -37,8 +36,10 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
       <Table>
         <TableHead>
           <TableRow sx={{ position: 'sticky', top: 0, background: "rgba(253, 251, 234, 1)" }}>
-            {tableHeadings.map((tableHeading) => (
-              <TableCell key={tableHeading}>{tableHeading}</TableCell>
+            {tableHeadings.map((tableHeading, index) => (
+              <TableCell key={tableHeading} sx={getTableCellStyles(index)}>
+                {tableHeading}
+              </TableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -54,7 +55,7 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
                 if (column === 'propertyName') {
                   value = (
                     <>
-                      <Typography variant='p' sx={{ fontWeight: 500, marginRight: "15px", fontSize: "14px" }}>{row.propertyName}</Typography><br />
+                      <Typography variant='p' sx={{ fontWeight: 500, fontSize: "14px" }}>{row.propertyName}</Typography><br />
                       <Typography sx={{ fontSize: "12px" }}> <img src="/assets/icons/location.svg" alt="" /> {row.propertyLocation} </Typography>
                     </>
                   );
@@ -62,6 +63,10 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
                   value = getDetectionIcons(row[column]);
                 } else if (column === 'action') {
                   value = getActionIcons(row[column]);
+                }
+                  else if (column === 'pairing') {
+                    value = getPairButtons(row[column]);
+                  
                 } else {
                   value = row[column];
                 }
@@ -94,6 +99,5 @@ const tablecontainer = {
   borderRadius: "10px",
   '& .MuiTableCell-root': {
     border: 'none',
-    textAlign: 'center',
   },
 };
