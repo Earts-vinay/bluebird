@@ -3,17 +3,26 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import PropTypes from 'prop-types';
 
-const CustomTextField = ({ label, value, onChange, placeholder, type , ...props }) => {
+const CustomTextField = ({ label, value, onChange, placeholder, type ,size='medium', ...props }) => {
     return (
         <TextField
             label={label}
-            size='small'
+            size={size}
+            fullWidth
             value={value}
             onChange={onChange}
             placeholder={placeholder}
             type={type}
             variant="outlined"
             margin="normal"
+            
+             InputProps={{
+        style: {
+         borderRadius:"10px",
+          padding: '10px',
+          height: '50px',
+        },
+      }}
             {...props}
         />
     );

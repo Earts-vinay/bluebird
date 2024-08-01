@@ -10,6 +10,10 @@ import Sidenav from './components/Sidenav';
 import DeviceDetails from './components/DevicesManagement/DeviceDetails';
 import EditDevices from "./components/DevicesManagement/EditDevices";
 import AddLinePolygon from './components/DevicesManagement/AddLinePolygon';
+import PropertyDetail from './components/DashboardScreens/PropertyDetail';
+import AddPole from './components/DashboardScreens/AddPole';
+import PairDevice from './components/DashboardScreens/PairDevice';
+
 import EditSettings from './components/SettingsManagement/EditSettings';
 import Detection from './components/SettingsManagement/Detection';
 import Notification from './components/SettingsManagement/Notification';
@@ -37,16 +41,24 @@ function App() {
           }}
         >
           <Routes>
+             {/* Dashboard */}
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/propertydetail" element={<PropertyDetail />} />
+            <Route path="/dashboard/addpole" element={<AddPole />} />
+            <Route path="/dashboard/pairdevice" element={<PairDevice />} />
+            {/* Devices */}
             <Route path="/devices" element={<Devices />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/settings" element={<Settings />} />
             <Route path='/settings/editsettings' element={<EditSettings />} />
             <Route path='/settings/detection' element={<Detection/>} />
             <Route path='/settings/notification' element={<Notification/>} />
             <Route path='/settings/notification' element={<Notification/>} />
             <Route path="/devices/database" element={<Database />} />
             <Route path="/devices/editdevice" element={<EditDevices />} />
+            {/* Users */}
+            <Route path="/users" element={<Users />} />
+
+            <Route path="/settings" element={<Settings />} />
+         
             <Route path="/devices/addline-polygon" element={<AddLinePolygon/>} />
           </Routes>
         </Box>
