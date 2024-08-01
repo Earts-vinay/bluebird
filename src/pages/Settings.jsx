@@ -7,20 +7,20 @@ import DefaultTable from '../utils/DefaultTable';
 
 
 const tableHeadings =['Property Name', 'Raise Alert', 'Vehicle Detection ', 'status', 'Time',];
-const settingcolumns = ['propertyName', 'raiseAlerts', 'VehicleDetection', 'status', 'Time', ];
+const settingcolumns = ['propertyName', 'raiseAlertscount', 'VehicleDetection', 'statuscount', 'Time', ];
 const settingrows = [
-  { propertyName: "Ikea Test 01", raiseAlerts: 1, VehicleDetection: 0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 02", raiseAlerts: 1, VehicleDetection: 0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 03", raiseAlerts: 1,VehicleDetection: 0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 04", raiseAlerts: 1, VehicleDetection:0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 05", raiseAlerts: 1, VehicleDetection:0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 06", raiseAlerts: 1, VehicleDetection:0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 07", raiseAlerts: 1, VehicleDetection:0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 07", raiseAlerts: 1, VehicleDetection: 0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 07", raiseAlerts: 1, VehicleDetection:0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 07", raiseAlerts: 1, VehicleDetection:0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 07", raiseAlerts: 1, VehicleDetection: 0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
-  { propertyName: "Ikea Test 07", raiseAlerts: 1, VehicleDetection: 0, status: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 01", raiseAlertscount: 1, VehicleDetection: 0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 02", raiseAlertscount: 1, VehicleDetection: 0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 03", raiseAlertscount: 1,VehicleDetection: 0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 04", raiseAlertscount: 1, VehicleDetection:0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 05", raiseAlertscount: 1, VehicleDetection:0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 06", raiseAlertscount: 1, VehicleDetection:0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 07", raiseAlertscount: 1, VehicleDetection:0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 07", raiseAlertscount: 1, VehicleDetection: 0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 07", raiseAlertscount: 1, VehicleDetection:0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 07", raiseAlertscount: 1, VehicleDetection:0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 07", raiseAlertscount: 1, VehicleDetection: 0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
+  { propertyName: "Ikea Test 07", raiseAlertscount: 1, VehicleDetection: 0, statuscount: 3, Time: 1, propertyLocation: 'Virginia, USA.' },
 
 
 ];
@@ -66,7 +66,7 @@ const Settings = () => {
             <ArrowBackIosIcon sx={{ color: '#3275AF', paddingLeft: 1, fontSize: 18 }} />
           </Button>
           <Box>
-            <Typography variant="h6" ml={5} sx={{ color: "#3275AF", fontSize: "18px" }}>
+            <Typography variant="h6" ml={2} sx={{ color: "#3275AF", fontSize: "18px" }}>
               Settings
             </Typography>
           </Box>
