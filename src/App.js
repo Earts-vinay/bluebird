@@ -15,6 +15,10 @@ import AddPole from './components/DashboardScreens/AddPole';
 import PairDevice from './components/DashboardScreens/PairDevice';
 import DeviceSetUp from './components/DashboardScreens/ParingScreens/DeviceSetUp';
 
+import EditSettings from './components/SettingsManagement/EditSettings';
+import Detection from './components/SettingsManagement/Detection';
+import Notification from './components/SettingsManagement/Notification';
+import Database from './components/SettingsManagement/Database';
 
 const theme = createTheme({
   typography: {
@@ -47,7 +51,11 @@ function App() {
             
             {/* Devices */}
             <Route path="/devices" element={<Devices />} />
-            <Route path="/devices/devicedetails" element={<DeviceDetails />} />
+            <Route path='/settings/editsettings' element={<EditSettings />} />
+            <Route path='/settings/detection' element={<Detection/>} />
+            <Route path='/settings/notification' element={<Notification/>} />
+            <Route path='/settings/notification' element={<Notification/>} />
+            <Route path="/devices/database" element={<Database />} />
             <Route path="/devices/editdevice" element={<EditDevices />} />
             {/* Users */}
             <Route path="/users" element={<Users />} />
