@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 
-const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActionIcons,getPairButtons, onClick }) => {
+const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActionIcons, getPairButtons,getCameraImages, getFormattedSchedule,renderSwitch, onClick }) => {
   if (!Array.isArray(columns) || !Array.isArray(rows)) {
     console.error('Invalid columns or rows');
     return null;
@@ -59,15 +59,21 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
                       <Typography sx={{ fontSize: "12px" }}> <img src="/assets/icons/location.svg" alt="" /> {row.propertyLocation} </Typography>
                     </>
                   );
-                } else if (column === 'detection') {
+                } else if (column === 'detection'|| column === 'detectionType') {
                   value = getDetectionIcons(row[column]);
                 } else if (column === 'action') {
                   value = getActionIcons(row[column]);
                 }
-                  else if (column === 'pairing') {
-                    value = getPairButtons(row[column]);
-                  
-                } else {
+                else if (column === 'pairing') {
+                  value = getPairButtons(row[column]);
+                }
+                else if (column === 'cameraImages') {
+                  value = getCameraImages(row[column]);
+                }
+                else if (column === 'schedule') {
+                  value = getFormattedSchedule(row[column]);
+                }
+                else {
                   value = row[column];
                 }
 
@@ -77,7 +83,7 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
                     onClick={onClick}
                     sx={getTableCellStyles(colIndex)}
                   >
-                    {value !== undefined ? value : 'N/A'}
+                    {column === 'raiseAlertsToggle' || column === 'status' ? renderSwitch(row, rowIndex, column) : value !== undefined ? value : 'N/A'}
                   </TableCell>
                 );
               })}

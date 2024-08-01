@@ -13,6 +13,7 @@ import AddLinePolygon from './components/DevicesManagement/AddLinePolygon';
 import PropertyDetail from './components/DashboardScreens/PropertyDetail';
 import AddPole from './components/DashboardScreens/AddPole';
 import PairDevice from './components/DashboardScreens/PairDevice';
+import DeviceSetUp from './components/DashboardScreens/ParingScreens/DeviceSetUp';
 
 
 const theme = createTheme({
@@ -42,6 +43,8 @@ function App() {
             <Route path="/dashboard/propertydetail" element={<PropertyDetail />} />
             <Route path="/dashboard/addpole" element={<AddPole />} />
             <Route path="/dashboard/pairdevice" element={<PairDevice />} />
+            <Route path="/dashboard/devicesetup" element={<DeviceSetUp />} />
+            
             {/* Devices */}
             <Route path="/devices" element={<Devices />} />
             <Route path="/devices/devicedetails" element={<DeviceDetails />} />

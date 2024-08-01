@@ -34,20 +34,20 @@ const breadcrumbs = [
 ];
 
 const tableHeadings = ['Cameras', 'IP Address', 'Network Type', 'Camera Type', 'Camera Status', 'Actions'];
-const columns = ['cameras', 'ipAddress', 'networkType', 'cameraType', 'cameraStatus', 'pairing'];
+const columns = ['cameraImages', 'ipAddress', 'networkType', 'cameraType', 'cameraStatus', 'pairing'];
 const rows = [
-    { cameras: "Ikea Test 01", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 02", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 03", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 04", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 05", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 06", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 07", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 07", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 07", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 07", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 07", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
-    { cameras: "Ikea Test 07", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
+    { cameraImages: "cameraImage", ipAddress: '10.119.24.86', networkType: 'RSTP', cameraType: 'Entry', cameraStatus: 'Paired', pairing: ['pair', 'unpair'] },
 
 ];
 
@@ -58,16 +58,37 @@ const PairDevice = () => {
     const handleGoBack = () => {
         navigate(-1);
     };
+    const handlepairing = () => {
+        navigate('/dashboard/devicesetup')
+    }
 
     const getPairButtons = (pairing) => {
         return (
             <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
                 {pairing.includes('pair') && (
-                    <CustomButton variant='outlined'>Pair</CustomButton>
+                    <CustomButton variant='outlined' position="inherit !important" onClick={handlepairing}>Pair</CustomButton>
                 )}
                 {pairing.includes('unpair') && (
-                    <CustomButton variant='outlined'>Unpair</CustomButton>
+                    <CustomButton variant='outlined' position="inherit !important">Unpair</CustomButton>
                 )}
+            </div>
+        );
+    };
+
+    const getCameraImages = (cameraImages) => {
+        return (
+            <div >
+                {cameraImages.includes('cameraImage') && (
+                    <img src="/assets/images/sam_image.png" alt=""   
+                    style={{
+                        height: "70px",
+                        width: "140px",
+                        objectFit: "cover",
+                        transition: 'height 0.3s ease, width 0.3s ease',
+                        borderRadius:"10px",
+                      }}/>
+                )}
+               
             </div>
         );
     };
@@ -94,7 +115,7 @@ const PairDevice = () => {
                 </Breadcrumbs>
             </Stack>
             <Box pt={3}>
-                <DefaultTable tableHeadings={tableHeadings} columns={columns} rows={rows} getPairButtons={getPairButtons} />
+                <DefaultTable tableHeadings={tableHeadings} columns={columns} rows={rows} getPairButtons={getPairButtons} getCameraImages={getCameraImages} />
             </Box>
         </>
     );

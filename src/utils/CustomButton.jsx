@@ -7,10 +7,11 @@ const CustomButton = ({
   children,
   onClick,
   variant = 'contained',
-  color = 'primary',
+  color,
   size = 'medium',
   disabled = false,
   startIcon,
+  position,
   endIcon,
   width = '100px',
   ...props
@@ -24,10 +25,12 @@ const CustomButton = ({
       disabled={disabled}
       startIcon={startIcon}
       endIcon={endIcon}
+      
       sx={{
         borderRadius: "10px",
         textTransform: 'capitalize',
         width: width,
+        position:{position}
       }}
       {...props}
     >
