@@ -13,8 +13,13 @@ import AddLinePolygon from './components/DevicesManagement/AddLinePolygon';
 import PropertyDetail from './components/DashboardScreens/PropertyDetail';
 import AddPole from './components/DashboardScreens/AddPole';
 import PairDevice from './components/DashboardScreens/PairDevice';
+import DeviceSetUp from './components/DashboardScreens/ParingScreens/DeviceSetUp';
 import ForgotPassword from './components/login/ForgotPassword';
 import Login from './pages/Login';
+import EditSettings from './components/SettingsManagement/EditSettings';
+import Detection from './components/SettingsManagement/Detection';
+import Notification from './components/SettingsManagement/Notification';
+import Database from './components/SettingsManagement/Database';
 
 const theme = createTheme({
   typography: {
@@ -49,6 +54,13 @@ const AppContent = () => {
           <Route path="/dashboard/pairdevice" element={<PairDevice />} />
           {/* Devices */}
           <Route path="/devices" element={<Devices />} />
+          <Route path="/dashboard/devicesetup" element={<DeviceSetUp />} />
+
+          <Route path='/settings/editsettings' element={<EditSettings />} />
+            <Route path='/settings/detection' element={<Detection/>} />
+            <Route path='/settings/notification' element={<Notification/>} />
+            <Route path='/settings/notification' element={<Notification/>} />
+            <Route path="/devices/database" element={<Database />} />
           <Route path="/devices/devicedetails" element={<DeviceDetails />} />
           <Route path="/devices/editdevice" element={<EditDevices />} />
           {/* Users */}

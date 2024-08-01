@@ -2,11 +2,12 @@
 import React from 'react';
 import { TextField, MenuItem } from '@mui/material';
 
-const DropdownTextField = ({ label, options, value, onChange, helperText, error,children,width }) => {
+const DropdownTextField = ({ label, options, value, onChange, helperText,size='medium', error,children,width }) => {
   return (
     <TextField
       select
-      size='small'
+      size={size}
+      fullWidth
       sx={{ width:width}}
       variant="outlined"
       label={label}
@@ -14,6 +15,14 @@ const DropdownTextField = ({ label, options, value, onChange, helperText, error,
       onChange={onChange}
       helperText={helperText}
       error={error}
+        margin="normal"
+        InputProps={{
+          style: {
+           borderRadius:"10px",
+            padding: '10px',
+            height: '50px',
+          },
+        }}
     >
       {children}
     </TextField>
