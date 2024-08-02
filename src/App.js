@@ -77,7 +77,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <CssBaseline />
         <AppContent />
       </Router>
     </ThemeProvider>
