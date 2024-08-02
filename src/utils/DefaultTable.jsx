@@ -73,6 +73,13 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
                 else if (column === 'schedule') {
                   value = getFormattedSchedule(row[column]);
                 }
+                else if (column === 'avatarInitials') {
+                  value = (
+                    <>
+                      <Typography align="center" className="backButtonStyle" sx={{ color: "#013A6F", fontWeight: 500, }}>{row.avatarInitials}</Typography><br />
+                    </>
+                  );
+                }
                 else {
                   value = row[column];
                 }

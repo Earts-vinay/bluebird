@@ -4,7 +4,7 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ReactCropper from './ReactCropper';
 
-const EditUser = ({ setIsEditingUser, setBreadcrumbs }) => {
+const EditUser = ({ setIsEditingUser }) => {
   console.log("Add user re-rendered");
   const navigate = useNavigate();
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -25,7 +25,7 @@ const EditUser = ({ setIsEditingUser, setBreadcrumbs }) => {
   const handleCancel = () => {
     navigate('/users');
     setIsEditingUser(false);
-    setBreadcrumbs([]);
+    // setBreadcrumbs([]);
   }
 
   const handleImageUpload = (event) => {
