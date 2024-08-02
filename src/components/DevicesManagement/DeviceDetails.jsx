@@ -80,7 +80,7 @@ const DeviceDetails = () => {
   };
 
   const editDevices = () => {
-    navigate("/devices/editdevice")
+    navigate("/dashboard/devicesetup")
   }
 
   const handleClickOpen = () => {

@@ -27,7 +27,7 @@ const breadcrumbs = [
     <NavLink
         key="2"
         style={{ textDecoration: 'none', color: '#187BCD', fontSize: "14px" }}
-        to="/dashboard/pairdevice"
+        to="/dashboard/discoverdevice"
     >
         Discover Devices
     </NavLink>,
@@ -51,7 +51,7 @@ const rows = [
 
 ];
 
-const PairDevice = () => {
+const DiscoverDevice = () => {
     const theme = useTheme();
     const navigate = useNavigate();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -121,5 +121,5 @@ const PairDevice = () => {
     );
 };
 
-export default PairDevice;
+export default DiscoverDevice;
 

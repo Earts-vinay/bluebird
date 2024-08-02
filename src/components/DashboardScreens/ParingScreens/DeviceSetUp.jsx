@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { Stepper, Step, StepLabel, Button, Typography, Box, Stack, Breadcrumbs, useMediaQuery } from '@mui/material';
-import FinishSetUp from './FinishSetUp';
-import AddLinePolygon from './AddLinePolygon';
 import SetUpDevice from './SetUp';
 import PairingDevice from './PairingDevice';
+import AddLinePolygon from './AddLinePolygon';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useTheme } from '@emotion/react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import CustomSearch from '../../../utils/CustomSearch';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import CustomButton from '../../../utils/CustomButton';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { FaDotCircle } from "react-icons/fa";
 
-
-
-
-const steps = ['Pair device', 'Set-up device', 'Add line/polygon', 'Finish set-up'];
+const steps = ['Pair device', 'Set-up device', 'Add line / polygon'];
 const breadcrumbs = [
     <NavLink
         key="1"
@@ -33,25 +27,25 @@ const breadcrumbs = [
         Property Details
     </NavLink>,
     <NavLink
-        key="2"
+        key="3"
         style={{ textDecoration: 'none', color: '#187BCD', fontSize: "14px" }}
-        to="/dashboard/pairdevice"
+        to="/dashboard/discoverdevice"
     >
         Discover Devices
     </NavLink>,
     <NavLink
-        key="2"
+        key="4"
         style={{ textDecoration: 'none', color: '#187BCD', fontSize: "14px" }}
         to="/dashboard/devicesetup"
     >
         Pair a device
     </NavLink>,
-
 ];
 
 function DeviceSetUp() {
     const theme = useTheme();
     const [activeStep, setActiveStep] = useState(0);
+    const [currentScreen, setCurrentScreen] = useState(0); // State for screen index
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const navigate = useNavigate();
 
@@ -74,11 +68,31 @@ function DeviceSetUp() {
     };
 
     const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        if (activeStep === 2) {
+            if (currentScreen < 1) {
+                setCurrentScreen(currentScreen + 1);
+            } else {
+                setActiveStep((prevActiveStep) => prevActiveStep + 1);
+                setCurrentScreen(0); // Reset screen index when moving to the next step
+
+                // Redirect to device detail page when the last step is completed
+                navigate('/devices/devicedetails');
+            }
+        } else {
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        }
     };
 
     const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        if (activeStep === 2) {
+            if (currentScreen > 0) {
+                setCurrentScreen(currentScreen - 1);
+            } else {
+                setActiveStep((prevActiveStep) => prevActiveStep - 1);
+            }
+        } else {
+            setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        }
     };
 
     const getStepContent = (step) => {
@@ -89,8 +103,6 @@ function DeviceSetUp() {
                 return <SetUpDevice />;
             case 2:
                 return <AddLinePolygon />;
-            case 3:
-                return <FinishSetUp />;
             default:
                 return 'Unknown step';
         }
@@ -98,20 +110,21 @@ function DeviceSetUp() {
 
     return (
         <>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 1, flexDirection: isSmallScreen ? 'column' : 'row' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: isSmallScreen ? 'column' : 'row' }}>
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                     <Box onClick={handleGoBack} className="backButtonStyle">
                         <ArrowBackIosIcon sx={{ color: '#3275AF', paddingLeft: 1, fontSize: 18 }} />
                     </Box>
-                    <Typography variant="h6" sx={{ marginBottom: isSmallScreen ? 2 : 0, color: "rgba(24, 123, 205, 1)" }}>Pair a device </Typography>
+                    <Typography variant="h6" sx={{ marginBottom: isSmallScreen ? 2 : 0, color: "rgba(24, 123, 205, 1)" }}>
+                        Pair a device
+                    </Typography>
                 </Box>
                 <Box sx={{ display: "flex", gap: "10px" }}>
-
                     <CustomButton variant='outlined' disabled={activeStep === 0} onClick={handleBack}>
-                        cancel
+                        Cancel
                     </CustomButton>
                     <CustomButton onClick={handleNext}>
-                        {activeStep === steps.length - 1 ? 'Finish' : 'save'}
+                        {activeStep === steps.length - 1 ? 'Finish' : 'Save'}
                     </CustomButton>
                 </Box>
             </Box>
@@ -126,7 +139,7 @@ function DeviceSetUp() {
 
             {/* Stepper begins */}
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', height: '80vh' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', height: '86.28vh' }}>
                 <Box sx={{
                     backgroundColor: "rgba(255, 255, 255, 1)",
                     borderRadius: "10px",
@@ -137,18 +150,11 @@ function DeviceSetUp() {
                     zIndex: 1000
                 }}>
                     <Stepper activeStep={activeStep} alternativeLabel>
-                        <Step>
-                            <StepLabel StepIconComponent={CustomStepIcon}>1. Pair device</StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel StepIconComponent={CustomStepIcon}>2. Set-up device</StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel StepIconComponent={CustomStepIcon}>3. Add line/polygon</StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel StepIconComponent={CustomStepIcon}>4. Finish set-up</StepLabel>
-                        </Step>
+                        {steps.map((label, index) => (
+                            <Step key={index}>
+                                <StepLabel StepIconComponent={CustomStepIcon}>{index + 1}. {label}</StepLabel>
+                            </Step>
+                        ))}
                     </Stepper>
                 </Box>
                 <Box sx={{
@@ -168,8 +174,6 @@ function DeviceSetUp() {
                     )}
                 </Box>
             </Box>
-
-
         </>
     );
 }
