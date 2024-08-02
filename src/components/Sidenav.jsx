@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom'
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Avatar, Typography, Divider, Box, FormControl, TextField, MenuItem, Button } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import moment from 'moment';
@@ -12,6 +13,7 @@ const Sidenav = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [open, setOpen] = useState(true);  // New state for sidebar open/close
     const now = moment();
+    const navigate = useNavigate();
     const formattedDate = now.format('ddd-DD/MM/YY');
 
     const isActive = (path) => {
@@ -40,14 +42,17 @@ const Sidenav = () => {
     };
 
     const handleToggle = () => {
-        setOpen(!open);  // Toggle the open state
+        setOpen(!open);  
     };
+    const handleLogout = () =>{
+        navigate('/')
+    }
 
     return (
         <Drawer
             variant="permanent"
             sx={{
-                width: open ? 240 : 90,  // Adjust width based on the open state
+                width: open ? 240 : 90,  
                 flexShrink: 0,
                 '& .MuiDrawer-paper': {
                     width: open ? 240 : 90,
@@ -57,7 +62,7 @@ const Sidenav = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    transition: 'width 0.3s',  // Smooth transition for width change
+                    transition: 'width 0.3s',  
                 },
             }}
         >
@@ -166,8 +171,8 @@ const Sidenav = () => {
                                 <ListItemIcon><img src="/assets/icons/settings.svg" alt="" /></ListItemIcon>
                                 {open && <ListItemText primary="Settings" />}  {/* Conditional rendering */}
                             </ListItem>
-                            <ListItem button>
-                                <ListItemIcon><img src="/assets/icons/logout.svg" alt="" style={{ color: "#fffff" }} /></ListItemIcon>
+                            <ListItem button onClick={handleLogout}>
+                                <ListItemIcon  ><img src="/assets/icons/logout.svg" alt="" style={{ color: "#fffff" }}  /> </ListItemIcon>
                                 {open && <ListItemText primary="Logout" />}  {/* Conditional rendering */}
                             </ListItem>
                         </Box>

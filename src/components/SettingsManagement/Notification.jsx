@@ -42,10 +42,10 @@ const Notification = ({onEdit, onDelete}) => {
   const getActionIcons = (actions) => {
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {actions.includes('editIcon') && (
+        {actions?.includes('editIcon') && (
           <Box component="img" src={EditIconUrl} alt="Edit Icon" sx={actionsStyle} onClick={onEdit} />
         )}
-        {actions.includes('deleteIcon') && (
+        {actions?.includes('deleteIcon') && (
           <Box component="img" src={DeleteIconUrl} alt="Delete Icon" sx={actionsStyle} onClick={onDelete} />
         )}
       </div>
@@ -54,17 +54,15 @@ const Notification = ({onEdit, onDelete}) => {
   
 
   const handleActionClick = (rowIndex, actions) => {
-    // Implement action handling based on actions array
-    if (actions.includes('editIcon')) {
+    if (actions?.includes('editIcon') )  {
       onEdit(rowIndex);
     }
-    if (actions.includes('deleteIcon')) {
+    if (actions?.includes('deleteIcon')) {
       onDelete(rowIndex);
     }
   };
   return (
     <Box>
-    
       <DefaultTable
         columns={notificationColumns}
         rows={notificationRows}
