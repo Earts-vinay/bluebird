@@ -18,21 +18,20 @@ const Database = ({onEditDatabase,onDeleteDatabase}) => {
   const getActionIcons = (actions) => {
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {actions.includes('editIcon') && (
+        {actions?.includes('editIcon') && (
           <Box component="img" src={EditIconUrl} alt="Edit Icon" sx={actionsStyle} onClick={onEditDatabase} />
         )}
-        {actions.includes('deleteIcon') && (
+        {actions?.includes('deleteIcon') && (
           <Box component="img" src={DeleteIconUrl} alt="Delete Icon" sx={actionsStyle} onClick={onDeleteDatabase} />
         )}
       </div>
     );
   };
   const handleActionClick = (rowIndex, actions) => {
-    // Implement action handling based on actions array
-    if (actions.includes('editIcon')) {
+    if (actions?.includes('editIcon')) {
       onEditDatabase(rowIndex);
     }
-    if (actions.includes('deleteIcon')) {
+    if (actions?.includes('deleteIcon')) {
       onDeleteDatabase(rowIndex);
     }
   };
