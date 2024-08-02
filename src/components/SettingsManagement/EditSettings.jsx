@@ -10,7 +10,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import Detection from "./Detection";
 import Database from "./Database";
 import Notification from "./Notification";
-import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -23,7 +22,8 @@ import dayjs from 'dayjs';
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 import CustomButton from "../../utils/CustomButton";
 import { useDropzone } from "react-dropzone";
-import CustomDeleteDialog from "../../utils/CustomDeleteDialog"
+import CustomDeleteDialog from "../../utils/CustomDeleteDialog";
+import CustomSearch from '../../utils/CustomSearch';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -50,62 +50,41 @@ const EditSettings = () => {
   const [editingNotification, setEditingNotification] = useState(null);
   const [editingDatabase, setEditingDatabase] = useState(null);
   const [open, setOpen] = useState(false);
-  const[databseopen, setDatabaseOpen] =useState(false);
+  const [databseopen, setDatabaseOpen] = useState(false);
 
-  const handleGoBack = () => {
-    navigate(-1);
-  };
+  const handleGoBack = () => navigate(-1);
 
-  const handleTabChange = (event, newValue) => {
-    setSelectedTab(newValue);
-  };
+  const handleTabChange = (event, newValue) => setSelectedTab(newValue);
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+  const handleSearchChange = (event) => setSearchTerm(event.target.value);
 
-  const handleAddNotification = () => {
-    setOpenNotificationDialog(true);
-  };
-  
+  const handleAddNotification = () => setOpenNotificationDialog(true);
+
+
   const handleEditNotification = (notification) => {
     setEditingNotification(notification);
     setOpenNotificationDialog(true);
   };
-  const handleEditDatabase = (database) =>{
+  const handleEditDatabase = (database) => {
     setEditingDatabase(database)
     setOpenDatabaseDialog(true)
   }
-  const handleCloseNotificationDialog = () => {
-    setOpenNotificationDialog(false);
-  };
 
-  const handleClosDatabaseDialog = () => {
-    setOpenDatabaseDialog(false);
-  };
-  const handleAddDatabase = () => {
-    setOpenDatabaseDialog(true);
-  };
+  const handleCloseNotificationDialog = () => setOpenNotificationDialog(false);
 
-  const handleCloseDatabaseDialog = () => {
-    setOpenDatabaseDialog(false);
-  };
-  const handleDeleteNotification = (notification) => {
-    setOpen(true)
-  };
-  const handleDeleteDatabase = ()=>{
-    setDatabaseOpen(true)
-  }
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleDatabaseClose = () => {
-    setDatabaseOpen(false)
-  };
+  const handleClosDatabaseDialog = () => setOpenDatabaseDialog(false);
 
-  const handleDelete = () => {
-    setOpen(false);
-  }
+  const handleAddDatabase = () => setOpenDatabaseDialog(true);
+
+  const handleDeleteNotification = () => setOpen(true);
+
+  const handleDeleteDatabase = () => setDatabaseOpen(true);
+
+  const handleClose = () => setOpen(false);
+
+  const handleDatabaseClose = () => setDatabaseOpen(false);
+
+  const handleDelete = () => setOpen(false);
 
   const handleDayClick = (day) => {
     if (selectedDays.includes(day)) {
@@ -157,15 +136,9 @@ const EditSettings = () => {
     });
   };
 
-
-
   const breadcrumbs = [
-    <Link component={RouterLink} underline="hover" key="1" color="#7A9AAE" to="/settings">
-      Settings
-    </Link>,
-    <Link component={RouterLink} underline="hover" key="2" color="#187BCD" to="/settings/editsettings">
-      Edit Settings
-    </Link>,
+    <Link component={RouterLink} underline="hover" key="1" color="#7A9AAE" to="/settings">Settings</Link>,
+    <Link component={RouterLink} underline="hover" key="2" color="#187BCD" to="/settings/editsettings">Edit Settings</Link>,
   ];
 
   return (
@@ -186,50 +159,16 @@ const EditSettings = () => {
         </Box>
 
         {selectedTab === 1 ? (
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ minWidth: 120, textTransform: 'none', borderRadius: "10px" }}
-            onClick={handleAddNotification}
-          >
-            Add Notification
-          </Button>
+          <CustomButton variant="contained" color="primary" position="relative" width="15%" onClick={handleAddNotification}> Add Notification</CustomButton>
         ) : selectedTab === 2 ? (
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ minWidth: 120, textTransform: 'none', borderRadius: "10px" }}
-            onClick={handleAddDatabase}
-          >
-            Add Database
-          </Button>
+          <CustomButton variant="contained" color="primary" position="relative" width="15%" onClick={handleAddDatabase}> Add Database</CustomButton>
         ) : (
-          <TextField
-            value={searchTerm}
-            onChange={handleSearchChange}
-            placeholder="Search..."
-            variant="outlined"
-            size="small"
-            InputProps={{
-              endAdornment: (
-                <IconButton>
-                  <SearchIcon />
-                </IconButton>
-              ),
-            }}
-          />
+          <CustomSearch value={searchTerm} onChange={handleSearchChange} placeholder="Search..." variant="outlined" size="small" />
         )}
       </Box>
-
       <Stack spacing={2}>
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" color='#7A9AAE' />}
-          aria-label="breadcrumb"
-        >
-          {breadcrumbs}
-        </Breadcrumbs>
+        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" color='#7A9AAE' />} aria-label="breadcrumb" >{breadcrumbs} </Breadcrumbs>
       </Stack>
-
       <Box mt={5}>
         <Tabs
           value={selectedTab}
@@ -258,30 +197,22 @@ const EditSettings = () => {
             <Detection />
           </TabPanel>
           <TabPanel value={selectedTab} index={1}>
-            <Notification onEdit={handleEditNotification} onDelete={handleDeleteNotification}  />
+            <Notification onEdit={handleEditNotification} onDelete={handleDeleteNotification} />
           </TabPanel>
           <TabPanel value={selectedTab} index={2}>
             <Database onEditDatabase={handleEditDatabase} onDeleteDatabase={handleDeleteDatabase} />
           </TabPanel>
         </Box>
       </Box>
-      {/* Notification Dialog */}
       <BootstrapDialog
         onClose={handleCloseNotificationDialog}
         aria-labelledby="customized-dialog-title"
         open={openNotificationDialog}
       >
-        <DialogTitle sx={{ m: 0, p: 2, backgroundColor: '#E9F4FB', color: "#013A6F", fontSize: '14px' }} id="customized-dialog-title">     <Typography  sx={{fontSize:"14px",color:"#013A6F",fontWeight:"bold"}}>{editingNotification ? 'Edit Notification' : 'Add Notification'}</Typography> </DialogTitle>
+        <DialogTitle sx={{ m: 0, p: 2, backgroundColor: '#E9F4FB', color: "#013A6F", fontSize: '14px' }} id="customized-dialog-title">     <Typography sx={{ fontSize: "14px", color: "#013A6F", fontWeight: "bold" }}>{editingNotification ? 'Edit Notification' : 'Add Notification'}</Typography> </DialogTitle>
         <IconButton
-          aria-label="close"
-          onClick={handleCloseNotificationDialog}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        />
+          aria-label="close" onClick={handleCloseNotificationDialog}
+          sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500], }} />
         <DialogContent>
           <CustomTextField sx={{ width: "100%" }} label="Rule Name" required />
           <Box py={1}>
@@ -356,171 +287,64 @@ const EditSettings = () => {
               </LocalizationProvider>
             </Box>
           </Box>
-
           <Box sx={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "space-between" }}>
             <Box sx={{ display: "flex", alignItems: "center", paddingTop: "20px", justifyContent: "center" }}>
-              <TextField
-                variant="outlined"
-                label="Select Emails"
-                size="small"
-                fullWidth
-                required
-                sx={{ height: "60px" }}
-                value={selectedEmails.join(', ')}
-                onClick={handlePopoverOpen}
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-
-              <Popover
-                open={isPopoverOpen}
-                anchorEl={anchorEl}
-                onClose={handlePopoverClose}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-              >
+              <CustomTextField variant="outlined" label="Select Emails" size="small" fullWidth required sx={{ height: "60px" }} value={selectedEmails.join(', ')} onClick={handlePopoverOpen} />
+              <Popover open={isPopoverOpen} anchorEl={anchorEl} onClose={handlePopoverClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'left', }}
+                transformOrigin={{ vertical: 'top', horizontal: 'left', }} >
                 <Box sx={{ minWidth: '200px', maxHeight: '400px', overflowY: 'auto' }}>
                   <div style={{ margin: "10px", display: "flex", gap: "10px" }}>
-                    <Button onClick={handleSelectAll} variant="outlined" color="primary">
-                      Select All
-                    </Button>
-                    <Button onClick={handleClearAll} variant="outlined" color="secondary">
-                      Clear All
-                    </Button>
+                    <CustomButton onClick={handleSelectAll} variant="outlined" color="primary" >Select All</CustomButton>
+                    <CustomButton onClick={handleClearAll} variant="outlined" color="secondary"> Clear All</CustomButton>
                   </div>
                   {usersData.map(user => (
                     <MenuItem key={user.id} value={user.email}>
                       <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={selectedEmails.includes(user.email)}
-                            onChange={() => handleEmailSelect(user.email)}
-                          />
-                        }
-                        label={user.email}
-                      />
+                        control={<Checkbox checked={selectedEmails.includes(user.email)} onChange={() => handleEmailSelect(user.email)} />} label={user.email} />
                     </MenuItem>
-                  ))}
-                </Box>
+                  ))} </Box>
               </Popover>
             </Box>
           </Box>
-
           <Box sx={{ display: "flex", gap: "10px", justifyContent: "center" }}>
-            <CustomButton onClick={handleCloseNotificationDialog} sx={{ backgroundColor: 'white', color: "#187BCD", border: "1px solid #187BCD", borderRadius: "5px" }}>
-              Cancel
-            </CustomButton>
+            <CustomButton onClick={handleCloseNotificationDialog} variant="outlined"> Cancel</CustomButton>
             <CustomButton>Save</CustomButton>
           </Box>
         </DialogContent>
       </BootstrapDialog>
-
-      {/* Database Dialog */}
-      <BootstrapDialog
-        onClose={handleCloseDatabaseDialog}
-        aria-labelledby="customized-dialog-title"
-        open={openDatabaseDialog}
-      >
+      <BootstrapDialog onClose={handleClosDatabaseDialog} aria-labelledby="customized-dialog-title" open={openDatabaseDialog} >
         <DialogTitle sx={{ m: 0, p: 2, backgroundColor: '#E9F4FB', color: "#013A6F", fontSize: '14px' }} id="customized-dialog-title">
-        <Typography  sx={{fontSize:"14px",color:"#013A6F",fontWeight:"bold"}}>{editingNotification ? 'Edit License Plate' : 'Add New License Plate'}</Typography>
+          <Typography sx={{ fontSize: "14px", color: "#013A6F", fontWeight: "bold" }}>{editingNotification ? 'Edit License Plate' : 'Add New License Plate'}</Typography>
         </DialogTitle>
         <DialogContent>
           <CustomTextField sx={{ width: "100%" }} label="License plate ID" required />
-          <TextField
-            type="text"
-            fullWidth
-            multiline
-            rows={4}
-            id="outlined-multiline"
-            label="Notes"
-            required
-            margin="dense"
-            name="notes"
-            variant="outlined"
-            sx={{
-              "&:hover .MuiOutlinedInput-root": {
-                "& > fieldset": { border: '1px solid #2465e9' },
-              },
-              "& .MuiOutlinedInput-root": {
-                "& > fieldset": { border: 'solid 1px #2465e9' },
-              },
-            }}
-          />
+          <TextField type="text" fullWidth Textarea multiline rows={4} id="outlined-multiline" label="Notes" requiredmargin="dense" name="notes" variant="outlined" />
           <Typography textAlign="center" pb={1}>
             OR
           </Typography>
           <Box sx={{ background: "#E3EBFC", padding: "20px", borderRadius: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <div>
-              <div
-                {...getRootProps()}
-                style={{
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '20px',
-                  flexDirection: 'column',
-                }}
-              >
-                <input {...getInputProps()} />
-                <img src={process.env.PUBLIC_URL + "/assets/icons/uploadicon.svg"}
-                  alt="" />
-                <Typography sx={{ color: '#2465e9', fontSize: '14px' }}>
-                  Bulk Upload
-                </Typography>
-              </div>
-              {logoFiles.some(file => file.name.endsWith('.csv')) && (
-                <div>
-                  <Typography sx={{ marginTop: '10px', fontSize: '12px' }}>
-                    Uploaded Files:
-                  </Typography>
-                  <ul>
-                    {logoFiles.map((file, index) => (
-                      <li key={index}>{file.name}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+            <div><div {...getRootProps()}
+              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '20px', flexDirection: 'column', }} >
+              <input {...getInputProps()} />
+              <img src={process.env.PUBLIC_URL + "/assets/icons/uploadicon.svg"} alt="" />
+              <Typography sx={{ color: '#2465e9', fontSize: '14px' }}>  Bulk Upload </Typography>
+            </div> {logoFiles.some(file => file.name.endsWith('.csv')) && (
+              <div> <Typography sx={{ marginTop: '10px', fontSize: '12px' }}> Uploaded Files: </Typography><ul>
+                {logoFiles.map((file, index) => (
+                  <li key={index}>{file.name}</li>
+                ))}</ul> </div>)} </div>
             <Typography sx={{ marginTop: '10px', fontSize: "10px", fontWeight: 'bold' }}>Preferred file size: 100kb</Typography>
             <Typography sx={{ marginTop: '5px', fontSize: "10px" }}>Formatted Support: .csv</Typography>
-            <Button
-              sx={{ marginTop: '5px', textDecoration: 'underline', fontSize: "12px" }}
-
-            >
-              Download sample.csv
-            </Button>
+            <Button sx={{ marginTop: '5px', textDecoration: 'underline', fontSize: "12px" }} > Download sample.csv</Button>
           </Box>
           <Box sx={{ display: "flex", gap: "10px", justifyContent: "center", pt: 5 }}>
-            <CustomButton onClick={handleClosDatabaseDialog} sx={{ backgroundColor: 'white', color: "#187BCD", border: "1px solid #187BCD", borderRadius: "5px" }}>
-              Cancel
-            </CustomButton>
+            <CustomButton onClick={handleClosDatabaseDialog} sx={{ backgroundColor: 'white', color: "#187BCD", border: "1px solid #187BCD", borderRadius: "5px" }}> Cancel </CustomButton>
             <CustomButton>Save</CustomButton>
           </Box>
         </DialogContent>
       </BootstrapDialog>
-      <CustomDeleteDialog
-        open={open}
-        handleClose={handleClose}
-        handleConfirm={handleDelete}
-        title="Do you want to delete the notification?"
-        content="Please confirm to delete the notification."
-        confirmText="Delete" cancelText="Cancel"
-      />
-       <CustomDeleteDialog
-        open={databseopen}
-        handleClose={handleDatabaseClose}
-        handleConfirm={handleDelete}
-        title="Do you want to delete the Database?"
-        content="Please confirm to delete the Database."
-        confirmText="Delete" cancelText="Cancel"
-      />
+      <CustomDeleteDialog open={open} handleClose={handleClose} handleConfirm={handleDelete} title="Do you want to delete the notification?" content="Please confirm to delete the notification." confirmText="Delete" cancelText="Cancel" />
+      <CustomDeleteDialog open={databseopen} handleClose={handleDatabaseClose} handleConfirm={handleDelete} title="Do you want to delete the Database?" content="Please confirm to delete the Database." confirmText="Delete" cancelText="Cancel" />
     </>
   );
 };
