@@ -6,51 +6,24 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { Box, Typography } from '@mui/material';
+import CustomButton from './CustomButton';
+import { borderRadius, textTransform } from '@mui/system';
 
 
-const StyledDialogTitle = styled(DialogTitle)({
-  backgroundColor: "#FBF3F0",
-  color: "#013A6F",
-  textAlign: "center",
-  fontSize: "14px",
-  fontWeight: "bold",
-});
-
-const StyledDialogContentText = styled(DialogContentText)({
-  paddingTop: "25px",
-  textAlign: "center",
-});
-
-const StyledDialogActions = styled(DialogActions)({
-  justifyContent: 'center',
-  paddingBottom: "25px",
-});
-
-const StyledButton = styled(Button)(({ theme, variant }) => ({
-  borderRadius: "10px",
-  textTransform: "capitalize",
-  ...(variant === 'cancel' && {
-    border: "2px solid #D4E4EA",
-    color: "#7A9AAE",
-  }),
-  ...(variant === 'delete' && {
-    backgroundColor: "#E53724",
-    color: "white",
-  }),
-}));
 
 const CustomDeleteDialog = ({ open, handleClose, handleConfirm, title, content, confirmText = "Delete", cancelText = "Cancel" }) => {
   console.log("harish check this");
   return (
     <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { width: '400px', maxWidth: '90%', borderRadius: "10px" } }}>
-      <StyledDialogTitle>{title}</StyledDialogTitle>
-      <DialogContent>
-        <StyledDialogContentText>{content}</StyledDialogContentText>
+      <Box sx={{backgroundColor:"rgba(251, 243, 240, 1)",textAlign:"center",padding:"10px"}}><Typography>{title}</Typography></Box>
+      <DialogContent sx={{textAlign:"center"}}>
+        <Typography>{content}</Typography>
       </DialogContent>
-      <StyledDialogActions>
-        <StyledButton variant="cancel" onClick={handleClose}>{cancelText.toLowerCase()}</StyledButton>
-        <StyledButton variant="delete" onClick={handleConfirm}>{confirmText.toLowerCase()}</StyledButton>
-      </StyledDialogActions>
+      <DialogActions sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',gap:"10px" }}>
+        <CustomButton variant='outlined' onClick={handleClose}>{cancelText}</CustomButton>
+        <CustomButton  sx={{backgroundColor:"rgba(229, 55, 36, 1)",color:"white",borderRadius:"10px",textTransform:"capitalize",}} onClick={handleConfirm}>{confirmText}</CustomButton>
+      </DialogActions>
     </Dialog>
   );
 };

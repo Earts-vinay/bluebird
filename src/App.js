@@ -8,7 +8,6 @@ import Users from './pages/Users';
 import Settings from './pages/Settings';
 import Sidenav from './components/Sidenav';
 import DeviceDetails from './components/DevicesManagement/DeviceDetails';
-import AddLinePolygon from './components/DevicesManagement/AddLinePolygon';
 import PropertyDetail from './components/DashboardScreens/PropertyDetail';
 import AddPole from './components/DashboardScreens/AddPole';
 import PairDevice from './components/DashboardScreens/DiscoverDevice';
@@ -64,7 +63,6 @@ const AppContent = () => {
           {/* Users */}
           <Route path="/users" element={<Users />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/devices/addline-polygon" element={<AddLinePolygon />} />
         </Routes>
       </Box>
     </Box>

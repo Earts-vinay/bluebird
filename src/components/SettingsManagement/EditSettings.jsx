@@ -143,37 +143,42 @@ const EditSettings = () => {
 
   return (
     <>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2} sx={{ pl: "0px" }}>
-        <Box display="flex" alignItems="center" sx={{ pl: "0px" }}>
-          <Button
-            onClick={handleGoBack}
-            sx={{ borderRadius: '50%', width: 35, height: 35, minWidth: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#E2E8F0', color: 'white' }}
-          >
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
+        <Box display="flex" alignItems="center" >
+        <Box onClick={handleGoBack} className="backButtonStyle">
             <ArrowBackIosIcon sx={{ color: '#3275AF', paddingLeft: 1, fontSize: 18 }} />
-          </Button>
+          </Box>
           <Box>
-            <Typography variant="h6" ml={5} sx={{ color: "#3275AF", fontSize: "18px" }}>
+            <Typography variant="h6" ml={2} sx={{ color: "#3275AF", fontSize: "18px" }}>
               Settings
             </Typography>
           </Box>
         </Box>
 
         {selectedTab === 1 ? (
-          <CustomButton variant="contained" color="primary" position="relative" width="15%" onClick={handleAddNotification}> Add Notification</CustomButton>
+          <CustomButton width="auto" onClick={handleAddNotification}> Add Notification</CustomButton>
         ) : selectedTab === 2 ? (
-          <CustomButton variant="contained" color="primary" position="relative" width="15%" onClick={handleAddDatabase}> Add Database</CustomButton>
+          <CustomButton width="auto" onClick={handleAddDatabase}> Add Database</CustomButton>
         ) : (
-          <CustomSearch value={searchTerm} onChange={handleSearchChange} placeholder="Search..." variant="outlined" size="small" />
+          <CustomSearch value={searchTerm} onChange={handleSearchChange}  />
         )}
       </Box>
       <Stack spacing={2}>
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" color='#7A9AAE' />} aria-label="breadcrumb" >{breadcrumbs} </Breadcrumbs>
       </Stack>
-      <Box mt={5}>
+      <Box mt={3}>
         <Tabs
           value={selectedTab}
           onChange={handleTabChange}
-          sx={{ borderBottom: 'none', '.MuiTabs-flexContainer': { backgroundColor: 'white', display: 'flex', justifyContent: 'space-between', borderRadius: '10px', boxShadow: '0 0 5px 0 rgba(36, 101, 233, 0.5)', border: '1px solid #C1E9FE', fontWeight: 'bold' } }}
+          sx={{ borderBottom: 'none',  '.MuiTabs-flexContainer': {
+            backgroundColor: 'white',
+            display: 'flex',
+            justifyContent: 'space-between',
+            borderRadius: '5px',
+            boxShadow: '0 0 5px 0 rgba(36, 101, 233, 0.5)',
+            border:"1px solid rgba(193, 233, 254, 1)",
+            fontWeight: 'bold',
+        }, }}
           TabIndicatorProps={{ style: { display: 'none' } }}
           size="small"
         >
@@ -183,9 +188,9 @@ const EditSettings = () => {
               label={label}
               sx={{
                 textTransform: 'capitalize',
-                backgroundColor: selectedTab === index && '#1167B1',
+                backgroundColor: selectedTab === index && 'rgba(17, 103, 177, 1)',
                 color: selectedTab === index && 'white !important',
-                width: { xs: '80%', sm: '30%' },
+                width: { xs: '100%', sm: '30%' },
                 borderRadius: '5px',
               }}
             />
@@ -204,6 +209,7 @@ const EditSettings = () => {
           </TabPanel>
         </Box>
       </Box>
+      
       <BootstrapDialog
         onClose={handleCloseNotificationDialog}
         aria-labelledby="customized-dialog-title"
@@ -343,7 +349,6 @@ const EditSettings = () => {
           </Box>
         </DialogContent>
       </BootstrapDialog>
-      <CustomDeleteDialog open={open} handleClose={handleClose} handleConfirm={handleDelete} title="Do you want to delete the notification?" content="Please confirm to delete the notification." confirmText="Delete" cancelText="Cancel" />
       <CustomDeleteDialog open={databseopen} handleClose={handleDatabaseClose} handleConfirm={handleDelete} title="Do you want to delete the Database?" content="Please confirm to delete the Database." confirmText="Delete" cancelText="Cancel" />
     </>
   );
