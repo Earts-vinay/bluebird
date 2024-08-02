@@ -82,7 +82,7 @@ const PropertyDetail = () => {
         navigate('/dashboard/addpole')
     }
     const handlePair = () => {
-        navigate('/dashboard/pairdevice')
+        navigate('/dashboard/discoverdevice')
     }
 
     return (

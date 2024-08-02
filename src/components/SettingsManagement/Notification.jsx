@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DefaultTable from "../../utils/DefaultTable";
 import { Box, Typography } from "@mui/material";
+import CustomDeleteDialog from '../../utils/CustomDeleteDialog';
 
 const EditIconUrl = process.env.PUBLIC_URL + '/assets/icons/edit.svg';
 const DeleteIconUrl = process.env.PUBLIC_URL + '/assets/icons/delete.svg';
@@ -10,6 +11,20 @@ const notificationColumns = ['ruleType', 'location', 'schedule', 'time', 'action
 const notificationRows = [
   { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon', 'Tue'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
   { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+  { ruleType: 'Sample_rule', location: 'Virginia USA', schedule: ['Mon'], time: "07:20:00 - 09:00:00", action: ['editIcon', 'deleteIcon'] },
+
 ];
 
 
@@ -38,15 +53,23 @@ const formatSchedule = (schedule) => {
 };
 
 const Notification = ({onEdit, onDelete}) => {
+  const [deletePopup, setDeletePopup] = useState(false);
+
+  const handleDelete = () => {
+    setDeletePopup(true)
+  }
+  const handleClose = () => {
+    setDeletePopup(false)
+  }
 
   const getActionIcons = (actions) => {
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {actions.includes('editIcon') && (
+        {actions?.includes('editIcon') && (
           <Box component="img" src={EditIconUrl} alt="Edit Icon" sx={actionsStyle} onClick={onEdit} />
         )}
-        {actions.includes('deleteIcon') && (
-          <Box component="img" src={DeleteIconUrl} alt="Delete Icon" sx={actionsStyle} onClick={onDelete} />
+        {actions?.includes('deleteIcon') && (
+          <Box component="img" src={DeleteIconUrl} alt="Delete Icon" sx={actionsStyle} onClick={handleDelete} />
         )}
       </div>
     );
@@ -54,17 +77,15 @@ const Notification = ({onEdit, onDelete}) => {
   
 
   const handleActionClick = (rowIndex, actions) => {
-    // Implement action handling based on actions array
-    if (actions.includes('editIcon')) {
+    if (actions?.includes('editIcon') )  {
       onEdit(rowIndex);
     }
-    if (actions.includes('deleteIcon')) {
+    if (actions?.includes('deleteIcon')) {
       onDelete(rowIndex);
     }
   };
   return (
     <Box>
-    
       <DefaultTable
         columns={notificationColumns}
         rows={notificationRows}
@@ -73,6 +94,9 @@ const Notification = ({onEdit, onDelete}) => {
         getFormattedSchedule={formatSchedule}
         onClick={handleActionClick}
       />
+
+       <CustomDeleteDialog open={deletePopup} handleClose={handleClose} handleConfirm={handleDelete} title="Do you want to delete the notification?" content="Please confirm to delete the notification." confirmText="Delete" cancelText="Cancel" />
+
     </Box>
   );
 };
