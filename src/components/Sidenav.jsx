@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Avatar, Typography, Divider, Box, FormControl, TextField, MenuItem, Button } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import moment from 'moment';
@@ -42,9 +42,9 @@ const Sidenav = () => {
     };
 
     const handleToggle = () => {
-        setOpen(!open);  
+        setOpen(!open);
     };
-    const handleLogout = () =>{
+    const handleLogout = () => {
         navigate('/')
     }
 
@@ -52,7 +52,7 @@ const Sidenav = () => {
         <Drawer
             variant="permanent"
             sx={{
-                width: open ? 240 : 90,  
+                width: open ? 240 : 90,
                 flexShrink: 0,
                 '& .MuiDrawer-paper': {
                     width: open ? 240 : 90,
@@ -62,18 +62,14 @@ const Sidenav = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    transition: 'width 0.3s',  
+                    transition: 'width 0.3s',
                 },
             }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <Box sx={{ position: 'sticky', top: 0, zIndex: 1, py: 1 }}>
-                <Box sx={{ display:"flex", justifyContent:"end", }}>
-                        <button  onClick={handleToggle} style={{ justifyContent: 'end', minWidth: '10px', backgroundColor: 'rgba(255, 255, 255, 0.2)', borderRadius: '50%', mx: 1,}}>
-                            {open ? <ChevronLeftIcon style={{ color: '#fff',width:"10px",height:"10px" }} /> : <ChevronRightIcon style={{ color: '#fff' }} />}
-                        </button>
-                    </Box>
-                    <ListItem sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#5BB5FF', gap: 1,}}>
+
+                    <ListItem sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#5BB5FF', gap: 1, }}>
                         <img src="/assets/icons/companylogo.svg" alt="" />
                         {open && <Typography variant="h6">COMPANY NAME</Typography>}  {/* Conditional rendering */}
                     </ListItem>
@@ -117,16 +113,20 @@ const Sidenav = () => {
                             </TextField>
                         </FormControl>
                     </ListItem>
-                    <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.48)', flex: 1, py: 2, mx: 2 }} />
-                   
+                    <Box sx={{ display: "flex", justifyContent: "end", alignItems: "center", pt: "10px", px: "10px", cursor: "pointer", }}>
+                        <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.48)', flex: 1, pb: 0, mx: 2 }} />
+                        <button onClick={handleToggle} style={{ display: "flex", justifyContent: 'center', alignItems: "center", width: "30px", height: "29px", backgroundColor: 'rgba(255, 255, 255, 0.2)', borderRadius: '50%', border: "none" }}>
+                            {open ? <ChevronLeftIcon style={{ color: '#fff', fontSize: "18px", cursor: "pointer" }} /> : <ChevronRightIcon style={{ color: '#fff', fontSize: "18px", cursor: "pointer" }} />}
+                        </button>
+                    </Box>
                 </Box>
                 <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
                     <List>
                         <ListItem>
                             <Avatar sx={{ bgcolor: 'grey', width: '65px', height: '65px' }}>JD</Avatar>
                             <div style={{ marginLeft: '16px' }}>
-                                {open && <Typography variant='p' sx={{fontFamily:"Montserrat, sans-serif"}}>Welcome,<br /> James Dho</Typography>}  <br/>
-                               {open && <Typography variant='p'>{formattedDate}</Typography>}
+                                {open && <Typography variant='p' sx={{ fontFamily: "Montserrat, sans-serif" }}>Welcome,<br /> James Dho</Typography>}  <br />
+                                {open && <Typography variant='p'>{formattedDate}</Typography>}
                             </div>
                         </ListItem>
                         <Box sx={{ pt: 3, mx: 2, gap: 1, display: "flex", flexDirection: "column" }}>
@@ -143,7 +143,6 @@ const Sidenav = () => {
                             <ListItem
                                 button
                                 component={Link}
-
                                 to="/devices"
                                 onClick={() => handleItemClick('/devices')}
                                 sx={getItemStyle('/devices')}
@@ -172,7 +171,7 @@ const Sidenav = () => {
                                 {open && <ListItemText primary="Settings" />}  {/* Conditional rendering */}
                             </ListItem>
                             <ListItem button onClick={handleLogout}>
-                                <ListItemIcon  ><img src="/assets/icons/logout.svg" alt="" style={{ color: "#fffff" }}  /> </ListItemIcon>
+                                <ListItemIcon  ><img src="/assets/icons/logout.svg" alt="" style={{ color: "#fffff" }} /> </ListItemIcon>
                                 {open && <ListItemText primary="Logout" />}  {/* Conditional rendering */}
                             </ListItem>
                         </Box>
@@ -182,8 +181,6 @@ const Sidenav = () => {
                     <Box sx={{ py: 2 }}>
                         <img src="/assets/logo.svg" alt="Logo" style={{ maxWidth: '100%', maxHeight: '50px' }} />
                     </Box>
-                    {/* Button to toggle open/close */}
-
                 </Box>
             </Box>
         </Drawer>

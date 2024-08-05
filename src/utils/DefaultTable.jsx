@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Box } from '@mui/material';
 
 const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActionIcons, getPairButtons,getCameraImages, getFormattedSchedule,renderSwitch, onClick }) => {
   if (!Array.isArray(columns) || !Array.isArray(rows)) {
@@ -75,9 +75,11 @@ const DefaultTable = ({ columns, rows, tableHeadings, getDetectionIcons, getActi
                 }
                 else if (column === 'avatarInitials') {
                   value = (
-                    <>
-                      <Typography align="center" className="backButtonStyle" sx={{ color: "#013A6F", fontWeight: 500, }}>{row.avatarInitials}</Typography><br />
-                    </>
+                   <>
+                    <Box sx={{display:"flex", justifyContent:"center",alignItems:"center" }}>
+                      <Typography align="center" className="backButtonStyle" sx={{ color: "#013A6F", fontWeight: 500,}}>{row.avatarInitials}</Typography><br />
+                    </Box>
+                   </>
                   );
                 }
                 else {

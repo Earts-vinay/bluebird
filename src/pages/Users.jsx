@@ -27,7 +27,7 @@ const Users = () => {
         setIsEditingUser(false)
       }}
     >
-      Users
+     {isAddingUser || isEditingUser && "user"}
     </NavLink>,
     ...(isAddingUser || isEditingUser
       ? [

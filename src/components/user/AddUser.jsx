@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, MenuItem, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ReactCropper from './ReactCropper';
+import CustomTextfield from '../../utils/CustomTextfield';
+import CustomDropdown from '../../utils/CustomDropdown';
+import CustomButton from '../../utils/CustomButton';
+
 
 const AddUser = ({ setIsAddingUser }) => {
     console.log("Add user re-rendered");
@@ -76,7 +80,7 @@ const AddUser = ({ setIsAddingUser }) => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         padding: 5,
-                        width: { xs: '100%', md: '50%' },
+                        width: { xs: '100%', md: '50%',sm:"60%" },
                         margin: 'auto',
                     }}
                 >
@@ -124,32 +128,11 @@ const AddUser = ({ setIsAddingUser }) => {
                                 textAlign: 'center',
                             }}
                         >
-                            <Button
-                                variant="contained"
-                                component="label"
-                                sx={{
-                                    height: '40px',
-                                    borderRadius: '8px',
-                                    backgroundColor: '#187BCD',
-                                    color: '#FFFFFF',
-                                    margin: '10px auto',
-                                    '&:hover': {
-                                        backgroundColor: '#1569A8',
-                                    },
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    gap: '10px',
-                                    width: '70%',
-                                }}
-                            >
-                                Upload Image
+                           <CustomButton width='auto'> Upload Image
                                 <input
                                     type="file"
                                     hidden
-                                    onChange={handleImageUpload}
-                                />
-                            </Button>
+                                    onChange={handleImageUpload}/></CustomButton>
                             <Typography sx={{ fontSize: '15px', marginTop: '10px', color: '#013A6F' }}>
                                 Preferred File: 512x512 <br />
                                 Format Supported: .jpg & .png
@@ -179,177 +162,33 @@ const AddUser = ({ setIsAddingUser }) => {
                             justifyContent: 'center',
                             padding: 5,
                             margin: 'auto',
-                            gap: '15px',
+                
                         }}
                     >
-                        <TextField
-                            fullWidth
-                            id="name"
-                            name="name"
-                            label="Name"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.name}
-                            sx={{
-                                mb: 2,
-                                borderRadius: "60px",
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#013A6F',
-                                        borderRadius: '10px',
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: '#013A6F',
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: '#013A6F',
-                                    },
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: '#013A6F',
-                                },
-                                '& .MuiInputLabel-root.Mui-focused': {
-                                    color: '#013A6F',
-                                },
-                            }}
-                        />
-                        <TextField
-                            fullWidth
-                            id="email"
-                            name="email"
-                            label="Email"
-                            type="email"
-                            onChange={formik.handleChange}
-                            value={formik.values.email}
-                            sx={{
-                                mb: 2,
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#013A6F',
-                                        borderRadius: '10px',
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: '#013A6F',
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: '#013A6F',
-                                    },
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: '#013A6F',
-                                },
-                                '& .MuiInputLabel-root.Mui-focused': {
-                                    color: '#013A6F',
-                                },
-                            }}
-                        />
+                       
+                        <CustomTextfield label="Name" type="text" onChange={formik.handleChange} value={formik.values.name}/>
+                        <CustomTextfield label="Email" type="email" onChange={formik.handleChange}  value={formik.values.email}/>
+                      
+                        <CustomDropdown label="Access Level" onChange={formik.handleChange} value={formik.values.accesslevel}>
+                         <MenuItem>Company Admin</MenuItem>
+                         <MenuItem>Company Viewer</MenuItem>
+                         <MenuItem>Property Viewer</MenuItem>
+                        </CustomDropdown>
 
-                        <TextField
-                            fullWidth
-                            id="accesslevel"
-                            name="accesslevel"
-                            label="Access Level"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.accesslevel}
-                            sx={{
-                                mb: 2,
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#013A6F',
-                                        borderRadius: '10px',
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: '#013A6F',
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: '#013A6F',
-                                    },
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: '#013A6F',
-                                },
-                                '& .MuiInputLabel-root.Mui-focused': {
-                                    color: '#013A6F',
-                                },
-                            }}
-                        />
-                        <TextField
-                            fullWidth
-                            id="propertyname"
-                            name="propertyname"
-                            label="Property Name"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.propertyname}
-                            sx={{
-                                mb: 2,
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        borderColor: '#013A6F',
-                                        borderRadius: '10px',
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: '#013A6F',
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: '#013A6F',
-                                    },
-                                },
-                                '& .MuiInputLabel-root': {
-                                    color: '#013A6F',
-                                },
-                                '& .MuiInputLabel-root.Mui-focused': {
-                                    color: '#013A6F',
-                                },
-                            }}
-                        />
+                        <CustomDropdown label="Access Level" onChange={formik.handleChange} value={formik.values.accesslevel}>
+                         <MenuItem>Ikea Test</MenuItem>
+                         <MenuItem>Ikea</MenuItem>
+                        </CustomDropdown>   
                     </Box>
-
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            gap: 2,
-                            position: 'absolute',
-                            bottom: '-40%',
-                            left: "35%",
-                        }}
-                    >
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            sx={{
-                                borderRadius: '8px',
-                                border: '1px solid #3275AF',
-                                color: '#3275AF',
-                                backgroundColor: 'transparent',
-                                '&:hover': {
-                                    backgroundColor: '#f2f2f2',
-                                },
-                            }}
-                            onClick={handleCancel}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            sx={{
-                                borderRadius: '8px',
-                                backgroundColor: '#3275AF',
-                                '&:hover': {
-                                    backgroundColor: '#285a8a',
-                                },
-                            }}
-                        >
-                            Save
-                        </Button>
+                    <Box sx={{display:"flex", gap:"10px",justifyContent:"center", position:"relative", bottom:{lg:"-80%",md:"-80%",sm:"0%"}}}> 
+                        <CustomButton variant='outlined'  onClick={handleCancel}>Cancel</CustomButton>
+                        <CustomButton>Save</CustomButton>
                     </Box>
                 </form>
             </Box>
 
+
+          
             {showCropper && (
                 <ReactCropper
                     showModal={showCropper}
