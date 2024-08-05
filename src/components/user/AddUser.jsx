@@ -80,7 +80,7 @@ const AddUser = ({ setIsAddingUser }) => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         padding: 5,
-                        width: { xs: '100%', md: '50%',sm:"60%" },
+                        width: { xs: '100%', md: '50%', sm: "60%" },
                         margin: 'auto',
                     }}
                 >
@@ -128,11 +128,13 @@ const AddUser = ({ setIsAddingUser }) => {
                                 textAlign: 'center',
                             }}
                         >
-                           <CustomButton width='auto'> Upload Image
+                            <CustomButton
+                                variant="contained"
+                                component="label" width='auto'> Upload Image
                                 <input
                                     type="file"
                                     hidden
-                                    onChange={handleImageUpload}/></CustomButton>
+                                    onChange={handleImageUpload} /></CustomButton>
                             <Typography sx={{ fontSize: '15px', marginTop: '10px', color: '#013A6F' }}>
                                 Preferred File: 512x512 <br />
                                 Format Supported: .jpg & .png
@@ -162,23 +164,23 @@ const AddUser = ({ setIsAddingUser }) => {
                             justifyContent: 'center',
                             padding: 5,
                             margin: 'auto',
-                
+
                         }}
                     >
-                       
-                        <CustomTextfield label="Name" type="text" onChange={formik.handleChange} value={formik.values.name}/>
-                        <CustomTextfield label="Email" type="email" onChange={formik.handleChange}  value={formik.values.email}/>
-                      
+
+                        <CustomTextfield label="Name" type="text" onChange={formik.handleChange} value={formik.values.name} />
+                        <CustomTextfield label="Email" type="email" onChange={formik.handleChange} value={formik.values.email} />
+
                         <CustomDropdown label="Access Level" onChange={formik.handleChange} value={formik.values.accesslevel}>
-                         <MenuItem>Company Admin</MenuItem>
-                         <MenuItem>Company Viewer</MenuItem>
-                         <MenuItem>Property Viewer</MenuItem>
+                            <MenuItem>Company Admin</MenuItem>
+                            <MenuItem>Company Viewer</MenuItem>
+                            <MenuItem>Property Viewer</MenuItem>
                         </CustomDropdown>
 
                         <CustomDropdown label="Access Level" onChange={formik.handleChange} value={formik.values.accesslevel}>
-                         <MenuItem>Ikea Test</MenuItem>
-                         <MenuItem>Ikea</MenuItem>
-                        </CustomDropdown>   
+                            <MenuItem>Ikea Test</MenuItem>
+                            <MenuItem>Ikea</MenuItem>
+                        </CustomDropdown>
                     </Box>
                     <Box
                         sx={{
@@ -190,14 +192,14 @@ const AddUser = ({ setIsAddingUser }) => {
                             left: "35%",
                         }}
                     >
-                        <CustomButton variant='outlined'  onClick={handleCancel}>Cancel</CustomButton>
+                        <CustomButton variant='outlined' onClick={handleCancel}>Cancel</CustomButton>
                         <CustomButton>Save</CustomButton>
                     </Box>
                 </form>
             </Box>
 
 
-          
+
             {showCropper && (
                 <ReactCropper
                     showModal={showCropper}

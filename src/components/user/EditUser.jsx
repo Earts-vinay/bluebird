@@ -128,7 +128,9 @@ const EditUser = ({ setIsEditingUser }) => {
                 textAlign: 'center',
               }}
             >
-              <CustomButton width='auto'> Upload Image
+              <CustomButton
+                variant="contained"
+                component="label" width='auto'> Upload Image
                 <input
                   type="file"
                   hidden

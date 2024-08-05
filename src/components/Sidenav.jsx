@@ -179,7 +179,7 @@ const Sidenav = () => {
                 </Box>
                 <Box sx={{ position: 'sticky', bottom: 0, textAlign: 'center', py: 2 }}>
                     <Box sx={{ py: 2 }}>
-                        <img src="/assets/logo.svg" alt="Logo" style={{ maxWidth: '100%', maxHeight: '50px' }} />
+                       {open ? <img src="/assets/logo.svg" alt="Logo" style={{ maxWidth: '100%', maxHeight: '50px' }} /> : <img src="/assets/icons/bluebirdlogo.svg" alt="Logo" style={{ maxWidth: '100%', maxHeight: '50px' }} /> } 
                     </Box>
                 </Box>
             </Box>
