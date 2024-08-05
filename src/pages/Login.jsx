@@ -1,26 +1,32 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { useFormik } from 'formik';
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { validate } from '../utils/validationUtils';
 import CustomTextField from '../utils/CustomTextfield';
 import CustomButton from '../utils/CustomButton';
+import { login } from '../redux/actions/authActions';
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validate,
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    initialValues: { email: '', password: '' },
+    onSubmit: (values) => {
+      dispatch(login(values))
+        .unwrap()
+        .then(() => {
+          navigate('/dashboard');
+        })
+        .catch(() => {
+        });
     },
   });
+
 
   const handleForgotPassword = () => {
     navigate('/forgot-password');
@@ -138,6 +144,7 @@ const Login = () => {
               <CustomButton
                 sx={{ mt: 2, width: '100%', height: '45px' }}
                 disabled={isButtonDisabled}
+                type="submit"
               >
                 Submit
               </CustomButton>

@@ -30,7 +30,7 @@ const theme = createTheme({
 const AppContent = () => {
   const location = useLocation();
 
-  const showSidebar = !['/', '/test', '/forgot-password'].includes(location.pathname);
+  const showSidebar = !['/login', '/test', '/forgot-password'].includes(location.pathname);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -45,7 +45,7 @@ const AppContent = () => {
       >
         <Routes>
           {/* Dashboard */}
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/propertydetail" element={<PropertyDetail />} />
