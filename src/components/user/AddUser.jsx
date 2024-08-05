@@ -180,7 +180,16 @@ const AddUser = ({ setIsAddingUser }) => {
                          <MenuItem>Ikea</MenuItem>
                         </CustomDropdown>   
                     </Box>
-                    <Box sx={{display:"flex", gap:"10px",justifyContent:"center", position:"relative", bottom:{lg:"-80%",md:"-80%",sm:"0%"}}}> 
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            gap: 2,
+                            position: 'absolute',
+                            bottom: '-40%',
+                            left: "35%",
+                        }}
+                    >
                         <CustomButton variant='outlined'  onClick={handleCancel}>Cancel</CustomButton>
                         <CustomButton>Save</CustomButton>
                     </Box>
