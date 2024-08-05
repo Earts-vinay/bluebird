@@ -12,20 +12,31 @@ import { borderRadius, textTransform } from '@mui/system';
 
 
 
-const CustomDeleteDialog = ({ open, handleClose, handleConfirm, title, content, confirmText = "Delete", cancelText = "Cancel" }) => {
+const CustomDeleteDialog = ({ open, handleClose, handleDelete, title, content, confirmText = "Delete", cancelText = "Cancel" }) => {
   console.log("harish check this");
   return (
     <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { width: '400px', maxWidth: '90%', borderRadius: "10px" } }}>
-      <Box sx={{backgroundColor:"rgba(251, 243, 240, 1)",textAlign:"center",padding:"10px"}}><Typography>{title}</Typography></Box>
-      <DialogContent sx={{textAlign:"center"}}>
+      <Box sx={{ backgroundColor: "rgba(251, 243, 240, 1)", textAlign: "center", padding: "10px" }}><Typography>{title}</Typography></Box>
+      <DialogContent sx={{ textAlign: "center" }}>
         <Typography>{content}</Typography>
       </DialogContent>
-      <DialogActions sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center',gap:"10px" }}>
+      <DialogActions sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: "10px" }}>
         <CustomButton variant='outlined' onClick={handleClose}>{cancelText}</CustomButton>
-        <CustomButton  sx={{backgroundColor:"rgba(229, 55, 36, 1)",color:"white",borderRadius:"10px",textTransform:"capitalize",}} onClick={handleConfirm}>{confirmText}</CustomButton>
+        <CustomButton sx={delete_button} onClick={handleDelete}>{confirmText}</CustomButton>
       </DialogActions>
     </Dialog>
   );
 };
 
 export default CustomDeleteDialog;
+
+const delete_button = {
+  backgroundColor: "rgba(229, 55, 36, 1)",
+  color: "white",
+  borderRadius: "10px",
+  textTransform: "capitalize",
+  '&:hover': {
+    backgroundColor: 'rgba(229, 55, 36, 1)',
+    borderRadius: "10px",
+  },
+}
