@@ -6,6 +6,9 @@ import moment from 'moment';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import {logout} from '../redux/actions/authActions';
+import { useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
 
 const Sidenav = () => {
     const location = useLocation();
@@ -14,8 +17,26 @@ const Sidenav = () => {
     const [open, setOpen] = useState(true);  // New state for sidebar open/close
     const now = moment();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const formattedDate = now.format('ddd-DD/MM/YY');
+    const [isLoggedOut, setIsLoggedOut] = useState(false);
 
+
+    useEffect(() => {
+        const handleStorageChange = (event) => {
+          if (event.key === 'activeSessionId' && !sessionStorage.getItem(event.newValue)) {
+            // Redirect to login if the active session is removed
+            navigate('/login');
+          }
+        };
+      
+        window.addEventListener('storage', handleStorageChange);
+      
+        return () => {
+          window.removeEventListener('storage', handleStorageChange);
+        };
+      }, [navigate]);
+    
     const isActive = (path) => {
         return location.pathname.startsWith(path);
     };
@@ -45,7 +66,14 @@ const Sidenav = () => {
         setOpen(!open);  
     };
     const handleLogout = () =>{
-        navigate('/')
+        dispatch(logout())
+      .unwrap()
+      .then(() => {
+        navigate('/login'); 
+      })
+      .catch((error) => {
+        console.error('Logout failed:', error);
+      });
     }
 
     return (
